@@ -1,6 +1,6 @@
 player = {
-  x:120,
-  z:120,
+  x:140,
+  z:140,
   a:step = 0
 },
 objects = [];
@@ -11,8 +11,8 @@ objects = [];
 // 2 - leaf
 
 // add trees
-for (x=10;x--;)
-  for (y=10;y--;)
+for (x=12;x--;)
+  for (y=12;y--;)
     for (
         X = x*24+Math.random()*24,
         Y = Math.random()*3|0,
@@ -30,46 +30,6 @@ for (x=10;x--;)
         s:8,
         h:1
       });
-
-draw = (e,f) => {
-  // 3d
-
-  for (a.width=320,i=30;i--;)
-    c.fillStyle = 'hsl(200,40%,'+(50+i)+'%',
-    c.fillRect(0,i*4,320,4);
-
-  for (i=30;i--;)
-    c.fillStyle = 'hsl(60,40%,'+(50+i)+'%',
-    c.fillRect(0,236-i*4,320,4);
-
-  for (f of objects)
-    x = f.x - player.x,
-    z = f.z - player.z,
-    f.X = x * Math.cos(player.a) - z * Math.sin(player.a),
-    f.Z = x * Math.sin(player.a) + z * Math.cos(player.a);
-
-  objects.sort((e,f) => f.Z - e.Z);
-
-  for (f of objects)
-    if (f.Z > 5 && f.X*120/f.Z < 160)
-      c.fillStyle = f.c,
-      x = f.s*120/f.Z,
-      y = (f.sy||f.s)*120/f.Z,
-      c.fillRect(160 + f.X*120/f.Z - x/2, 120 - f.y*120/f.Z-y/2, x, y)
-    
-  // 2d
-//  ;c.fillStyle = '#000';
-//  c.fillRect(128-2,240+128-2,4,4);
-//
-//  for (f of objects) {
-//    x = f.x - player.x;
-//    z = f.z - player.z;
-//    xp = x * Math.cos(player.a) - z * Math.sin(player.a);
-//    zp = x * Math.sin(player.a) + z * Math.cos(player.a);
-//    c.fillStyle = f.c;
-//    c.fillRect(128+xp-f.s/2,240+128+zp-f.s/2,f.s,f.s)
-//  }
-},
 
 kindle = (e,f) => {
   e.t = 1,
@@ -129,8 +89,46 @@ setInterval((e,f) => {
       s:4,
       h:20
     }),
-  
+
+  // update world
   objects = objects.filter((e,f)=>(e.p&&e.p(e),e.h>=0)),
-  draw(),
+
+  // draw world
+  for (a.width=320,i=30;i--;)
+    c.fillStyle = 'hsl(200,40%,'+(50+i)+'%',
+    c.fillRect(0,i*4,320,4);
+
+  for (i=30;i--;)
+    c.fillStyle = 'hsl(60,40%,'+(50+i)+'%',
+    c.fillRect(0,236-i*4,320,4);
+
+  for (f of objects)
+    x = f.x - player.x,
+    z = f.z - player.z,
+    f.X = x * Math.cos(player.a) - z * Math.sin(player.a),
+    f.Z = x * Math.sin(player.a) + z * Math.cos(player.a);
+
+  objects.sort((e,f) => f.Z - e.Z);
+
+  for (f of objects)
+    if (f.Z > 5 && f.X*120/f.Z < 160)
+      c.fillStyle = f.c,
+      x = f.s*120/f.Z,
+      y = (f.sy||f.s)*120/f.Z,
+      c.fillRect(160 + f.X*120/f.Z - x/2, 120 - f.y*120/f.Z-y/2, x, y);
+
+  // draw map for debugging
+//  c.fillStyle = '#000';
+//  c.fillRect(160-2,240+160-2,4,4);
+//
+//  for (f of objects) {
+//    x = f.x - player.x;
+//    z = f.z - player.z;
+//    xp = x * Math.cos(player.a) - z * Math.sin(player.a);
+//    zp = x * Math.sin(player.a) + z * Math.cos(player.a);
+//    c.fillStyle = f.c;
+//    c.fillRect(160+xp-f.s/2,240+160+zp-f.s/2,f.s,f.s)
+//  }
+
   step++
 }, 33)

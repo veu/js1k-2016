@@ -4,7 +4,6 @@ module.exports = function(grunt) {
     mangle: {
       reserved: 'acefghixyz',
       names: [
-        'draw',
         'kindle',
         'objects',
         'player',
