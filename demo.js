@@ -35,7 +35,7 @@ burn = (e,f) => {
   e.t = 1,
   e.h = 240,
   e.p = (e,f) => {
-    e.c = 'hsla('+(Math.random()*50|0)+',100%,'+(50+Math.random()*10|0)+'%,.5',
+    e.c = 'hsla('+Math.random()*50+',100%,'+(50+Math.random()*10)+'%,.5',
     e.s = Math.random()*10+6,
     e.h--;
     // create smoke
@@ -71,7 +71,7 @@ setInterval((e,f) => {
 
   // splash water
   player[32] && entities.push({
-      c:'hsl(200,40%,'+(50+Math.random()*10|0)+'%',
+      c:'hsl(200,40%,'+(50+Math.random()*10)+'%',
       x:player.x+12*Math.cos(player.a),
       y:-8,
       z:player.z-12*Math.sin(player.a),
