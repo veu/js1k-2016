@@ -21,7 +21,7 @@ for (x=12;x--;)
         i=12;i--;)
       f = Math.random()*7,
       entities.push({
-        c: 'hsl(140,60%,'+(50-i*2)+'%',
+        c: 'hsl(150,60%,'+(50-i*2)+'%',
         x: X+f*Math.cos(e = Math.random()*7),
         y: 10-i/2+Math.random()*3|0,
         z: Z+f*Math.sin(e),
