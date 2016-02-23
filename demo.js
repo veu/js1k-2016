@@ -91,7 +91,7 @@ setInterval((e,f) => {
     }),
 
   // update world
-  objects = objects.filter((e,f)=>(e.p&&e.p(e),e.h>=0)),
+  objects = objects.filter((e,f)=>(e.p&&e.p(e),e.h>=0));
 
   // draw world
   for (a.width=320,i=30;i--;)
