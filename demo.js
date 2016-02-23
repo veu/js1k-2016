@@ -5,11 +5,6 @@ player = {
 },
 objects = [];
 
-// types
-// 0 - other
-// 1 - fire
-// 2 - leaf
-
 // add trees
 for (x=12;x--;)
   for (y=12;y--;)
@@ -31,38 +26,46 @@ for (x=12;x--;)
         h:1
       });
 
-kindle = (e,f) => {
+// burn leaves
+burn = (e,f) => {
   e.t = 1,
   e.h = 240,
   e.p = (e,f) => {
     e.c = 'hsla('+(Math.random()*50|0)+',100%,'+(50+Math.random()*10|0)+'%,.5',
     e.s = Math.random()*10+6,
     e.h--;
+    // create smoke
     step%16||objects.push({
       c:e.w?(e.w=0,'#ccc'):'#666',
       x:e.x,
       y:e.y,
       z:e.z,
       h:100,
-      p:(e,f)=>{e.h--;e.y+=1/2},
+      p:(e,f)=>{
+        e.h--;
+        e.y+=1/2
+      },
       s:4
     });
+    // spread fire
     if (step%80==0)
       for (f of objects)
         if (2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<1)
-          return kindle(f)
+          return burn(f)
   }
 },
-kindle(objects[objects.length-1]),
+burn(objects[objects.length-1]),
 
 onkeydown = onkeyup = (e,f) => {
   player[e.keyCode] = e.type[5]
 },
 
 setInterval((e,f) => {
+  // move player
   player.a += (!!player[39] - !!player[37])/20,
   player.x += !!player[38]*Math.sin(player.a) - !!player[40]*Math.sin(player.a),
   player.z += !!player[38]*Math.cos(player.a) - !!player[40]*Math.cos(player.a),
+
   // splash water
   player[32] && step%2 && objects.push({
       c:'hsl(200,40%,'+(50+Math.random()*10|0)+'%',
@@ -88,28 +91,34 @@ setInterval((e,f) => {
       },
       s:4,
       h:20
-    }),
+    });
 
   // update world
-  objects = objects.filter((e,f)=>(e.p&&e.p(e),e.h>=0));
+  for (f of objects)
+    f.p&&f.p(f);
+  objects = objects.filter((e,f)=>e.h>=0);
 
-  // draw world
+  // draw sky
   for (a.width=320,i=30;i--;)
     c.fillStyle = 'hsl(200,40%,'+(50+i)+'%',
     c.fillRect(0,i*4,320,4);
 
+  // draw ground
   for (i=30;i--;)
     c.fillStyle = 'hsl(60,40%,'+(50+i)+'%',
     c.fillRect(0,236-i*4,320,4);
 
+  // calculate z-indexes
   for (f of objects)
     x = f.x - player.x,
     z = f.z - player.z,
     f.X = x * Math.cos(player.a) - z * Math.sin(player.a),
     f.Z = x * Math.sin(player.a) + z * Math.cos(player.a);
 
+  // sort entities
   objects.sort((e,f) => f.Z - e.Z);
 
+  // draw entities
   for (f of objects)
     if (f.Z > 5 && f.X*120/f.Z < 160)
       c.fillStyle = f.c,
