@@ -15,7 +15,7 @@ for (x=12;x--;)
           y: -2,
           z: Z = y*24+Math.random()*24,
           s: 2,
-          sy: 14,
+          S: 14,
           h: 1
         }),
         i=12;i--;)
@@ -78,12 +78,12 @@ setInterval((e,f) => {
       e:2*Math.sin(player.a-1/2),
       f:2*Math.cos(player.a-1/2),
       s:1,
-      yv:16,
+      Y:16,
       p:(e,f)=>{
         e.x+=e.e,
         e.z+=e.f,
-        e.y+=e.yv/6,
-        e.yv-=3/2,
+        e.y+=e.Y/6,
+        e.Y-=3/2,
         e.h--;
         for (f of entities)
           1==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
@@ -127,7 +127,7 @@ setInterval((e,f) => {
     if (f.Z > 5 && f.X*120/f.Z < 160)
       c.fillStyle = f.c,
       x = f.s*120/f.Z,
-      y = (f.sy||f.s)*120/f.Z,
+      y = (f.S||f.s)*120/f.Z,
       c.fillRect(160 + f.X*120/f.Z - x/2, 120 - f.y*120/f.Z-y/2, x, y);
 
   // draw map for debugging (needs height ~= 600)
