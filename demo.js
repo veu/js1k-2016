@@ -9,21 +9,26 @@ entities = [];
 for (x=12;x--;)
   for (y=12;y--;)
     for (
-        X = x*24+Math.random()*24,
-        Y = Math.random()*3|0,
-        Z = y*24+Math.random()*24,
-        entities.push({c:'#632',x:X,y:-2,z:Z,s:2,sy:14,h:1}),
+        entities.push({
+          c: '#632',
+          x: X = x*24+Math.random()*24,
+          y: -2,
+          z: Z = y*24+Math.random()*24,
+          s: 2,
+          sy: 14,
+          h: 1
+        }),
         i=12;i--;)
       e = Math.random()*7,
       f = Math.random()*7,
       entities.push({
-        c:'hsl(140,60%,'+(50-i*2)+'%',
-        x:X+f*Math.cos(e),
-        y:Y+10-i/2,
-        z:Z+f*Math.sin(e),
-        t:2,
-        s:8,
-        h:1
+        c: 'hsl(140,60%,'+(50-i*2)+'%',
+        x: X+f*Math.cos(e),
+        y: 10-i/2+Math.random()*3|0,
+        z: Z+f*Math.sin(e),
+        t: 2,
+        s: 8,
+        h: 1
       });
 
 // burn leaves
