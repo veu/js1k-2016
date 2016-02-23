@@ -19,11 +19,10 @@ for (x=12;x--;)
           h: 1
         }),
         i=12;i--;)
-      e = Math.random()*7,
       f = Math.random()*7,
       entities.push({
         c: 'hsl(140,60%,'+(50-i*2)+'%',
-        x: X+f*Math.cos(e),
+        x: X+f*Math.cos(e = Math.random()*7),
         y: 10-i/2+Math.random()*3|0,
         z: Z+f*Math.sin(e),
         t: 2,
@@ -131,7 +130,7 @@ setInterval((e,f) => {
       y = (f.sy||f.s)*120/f.Z,
       c.fillRect(160 + f.X*120/f.Z - x/2, 120 - f.y*120/f.Z-y/2, x, y);
 
-  // draw map for debugging
+  // draw map for debugging (needs height ~= 600)
 //  c.fillStyle = '#000';
 //  c.fillRect(160-2,240+160-2,4,4);
 //
