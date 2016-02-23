@@ -5,7 +5,7 @@ module.exports = function(grunt) {
       reserved: 'acefghixyz',
       names: [
         'burn',
-        'objects',
+        'entities',
         'player',
         'step'
       ]

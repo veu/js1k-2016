@@ -3,7 +3,7 @@ player = {
   z:140,
   a:step = 0
 },
-objects = [];
+entities = [];
 
 // add trees
 for (x=12;x--;)
@@ -12,11 +12,11 @@ for (x=12;x--;)
         X = x*24+Math.random()*24,
         Y = Math.random()*3|0,
         Z = y*24+Math.random()*24,
-        objects.push({c:'#632',x:X,y:-2,z:Z,s:2,sy:14,h:1}),
+        entities.push({c:'#632',x:X,y:-2,z:Z,s:2,sy:14,h:1}),
         i=12;i--;)
       e = Math.random()*7,
       f = Math.random()*7,
-      objects.push({
+      entities.push({
         c:'hsl(140,60%,'+(50-i*2)+'%',
         x:X+f*Math.cos(e),
         y:Y+10-i/2,
@@ -35,7 +35,7 @@ burn = (e,f) => {
     e.s = Math.random()*10+6,
     e.h--;
     // create smoke
-    step%16||objects.push({
+    step%16||entities.push({
       c:e.w?(e.w=0,'#ccc'):'#666',
       x:e.x,
       y:e.y,
@@ -49,12 +49,12 @@ burn = (e,f) => {
     });
     // spread fire
     if (step%80==0)
-      for (f of objects)
+      for (f of entities)
         if (2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<1)
           return burn(f)
   }
 },
-burn(objects[objects.length-1]),
+burn(entities[entities.length-1]),
 
 onkeydown = onkeyup = (e,f) =>
   player[e.keyCode] = e.type[5],
@@ -66,7 +66,7 @@ setInterval((e,f) => {
   player.z += !!player[38]*Math.cos(player.a) - !!player[40]*Math.cos(player.a),
 
   // splash water
-  player[32] && objects.push({
+  player[32] && entities.push({
       c:'hsl(200,40%,'+(50+Math.random()*10|0)+'%',
       x:player.x+12*Math.cos(player.a),
       y:-8,
@@ -81,7 +81,7 @@ setInterval((e,f) => {
         e.y+=e.yv/6,
         e.yv-=3/2,
         e.h--;
-        for (f of objects)
+        for (f of entities)
           1==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
             e.h=0,
             f.h-=2,
@@ -93,9 +93,9 @@ setInterval((e,f) => {
     });
 
   // update world
-  for (f of objects)
+  for (f of entities)
     f.p&&f.p(f);
-  objects = objects.filter((e,f)=>e.h>=0),
+  entities = entities.filter((e,f)=>e.h>=0),
 
   a.width=320;
   // draw sky
@@ -109,17 +109,17 @@ setInterval((e,f) => {
     c.fillRect(0,236-i*4,320,4);
 
   // calculate z-indexes
-  for (f of objects)
+  for (f of entities)
     x = f.x - player.x,
     z = f.z - player.z,
     f.X = x * Math.cos(player.a) - z * Math.sin(player.a),
     f.Z = x * Math.sin(player.a) + z * Math.cos(player.a);
 
   // sort entities
-  objects.sort((e,f) => f.Z - e.Z);
+  entities.sort((e,f) => f.Z - e.Z);
 
   // draw entities
-  for (f of objects)
+  for (f of entities)
     if (f.Z > 5 && f.X*120/f.Z < 160)
       c.fillStyle = f.c,
       x = f.s*120/f.Z,
@@ -130,7 +130,7 @@ setInterval((e,f) => {
 //  c.fillStyle = '#000';
 //  c.fillRect(160-2,240+160-2,4,4);
 //
-//  for (f of objects) {
+//  for (f of entities) {
 //    x = f.x - player.x;
 //    z = f.z - player.z;
 //    xp = x * Math.cos(player.a) - z * Math.sin(player.a);
