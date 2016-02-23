@@ -56,9 +56,8 @@ burn = (e,f) => {
 },
 burn(objects[objects.length-1]),
 
-onkeydown = onkeyup = (e,f) => {
-  player[e.keyCode] = e.type[5]
-},
+onkeydown = onkeyup = (e,f) =>
+  player[e.keyCode] = e.type[5],
 
 setInterval((e,f) => {
   // move player
@@ -67,7 +66,7 @@ setInterval((e,f) => {
   player.z += !!player[38]*Math.cos(player.a) - !!player[40]*Math.cos(player.a),
 
   // splash water
-  player[32] && step%2 && objects.push({
+  player[32] && objects.push({
       c:'hsl(200,40%,'+(50+Math.random()*10|0)+'%',
       x:player.x+12*Math.cos(player.a),
       y:-8,
@@ -96,10 +95,11 @@ setInterval((e,f) => {
   // update world
   for (f of objects)
     f.p&&f.p(f);
-  objects = objects.filter((e,f)=>e.h>=0);
+  objects = objects.filter((e,f)=>e.h>=0),
 
+  a.width=320;
   // draw sky
-  for (a.width=320,i=30;i--;)
+  for (i=30;i--;)
     c.fillStyle = 'hsl(200,40%,'+(50+i)+'%',
     c.fillRect(0,i*4,320,4);
 
