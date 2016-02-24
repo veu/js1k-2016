@@ -93,7 +93,7 @@ setInterval((e,f) => {
           )
       },
       s:4,
-      h:20
+      h:24
     });
 
   // update world
