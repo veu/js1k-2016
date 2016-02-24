@@ -94,8 +94,7 @@ setInterval((e,f) => {
         for (f of entities)
           1==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
             e.h=0,
-            f.h-=9,
-            f.w=1
+            f.h-=f.w=9
           )
       },
       s:4,
