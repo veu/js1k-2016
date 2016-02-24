@@ -55,12 +55,11 @@ burn = (e,f) => {
         e.y+=1/2
       },
       s:4
-    });
+    }),
     // spread fire
-    if (step%80==0)
-      for (f of entities)
-        if (2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<1)
-          return burn(f)
+    step%80 || entities.some(
+      f => 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<1 && !burn(f)
+    )
   }
 },
 
