@@ -61,16 +61,16 @@ burn = (e,f) => {
 burn(entities[entities.length-1]),
 
 onkeydown = onkeyup = (e,f) =>
-  player[e.keyCode] = e.type[5],
+  player[e.keyCode-32] = e.type[5],
 
 setInterval((e,f) => {
   // move player
-  player.a += (!!player[39] - !!player[37])/20,
-  player.x += !!player[38]*Math.sin(player.a) - !!player[40]*Math.sin(player.a),
-  player.z += !!player[38]*Math.cos(player.a) - !!player[40]*Math.cos(player.a),
+  player.a += (!!player[7] - !!player[5])/20,
+  player.x += !!player[6]*Math.sin(player.a) - !!player[8]*Math.sin(player.a),
+  player.z += !!player[6]*Math.cos(player.a) - !!player[8]*Math.cos(player.a),
 
   // splash water
-  player[32] && entities.push({
+  player[0] && entities.push({
       c:'hsl(200,40%,'+(50+Math.random()*10)+'%',
       x:player.x+12*Math.cos(player.a),
       y:-8,
@@ -88,7 +88,7 @@ setInterval((e,f) => {
         for (f of entities)
           1==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
             e.h=0,
-            f.h-=2,
+            f.h-=9,
             f.w=1
           )
       },
