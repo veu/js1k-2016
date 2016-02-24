@@ -3,7 +3,10 @@ player = {
   z:140,
   a:1
 },
-entities = [];
+entities = [],
+
+hsl = (e,f,g,h) =>
+  'hsla('+[e,f+'%',50+g+'%',h||1];
 
 // add trees
 for (x=12;x--;)
@@ -11,7 +14,7 @@ for (x=12;x--;)
     for (
         // create trunk
         entities.push({
-          c: '#632',
+          c: hsl(15,50,-23),
           x: X = x*24+Math.random()*24,
           y: -2,
           z: Z = y*24+Math.random()*24,
@@ -23,7 +26,7 @@ for (x=12;x--;)
       // create leaf
       f = Math.random()*7,
       entities.push({
-        c: 'hsl(150,60%,'+(50-i*2)+'%',
+        c: hsl(150,60,-i*2),
         x: X+f*Math.cos(e = Math.random()*7),
         y: 10-i/2+Math.random()*3|0,
         z: Z+f*Math.sin(e),
@@ -38,11 +41,11 @@ burn = (e,f) => {
   e.t = 1,
   e.p = (e,f) => {
     e.h--;
-    e.c = 'hsla('+Math.random()*50+',100%,'+(50+Math.random()*10)+'%,.5',
+    e.c = hsl(Math.random()*50,100,Math.random()*10,1/2),
     e.s = Math.random()*10+6;
     // create smoke
     step%16||entities.push({
-      c:e.w?(e.w=0,'#ccc'):'#666',
+      c:hsl(0,0,e.w?(e.w=0,30):-10),
       x:e.x+Math.random()*3,
       y:e.y,
       z:e.z,
@@ -75,7 +78,7 @@ setInterval((e,f) => {
 
   // discharge water
   player[0] && entities.push({
-      c:'hsl(200,40%,'+(50+Math.random()*10)+'%',
+      c:hsl(200,40,Math.random()*10),
       x:player.x+12*Math.cos(player.a),
       y:-8,
       z:player.z-12*Math.sin(player.a),
@@ -106,7 +109,7 @@ setInterval((e,f) => {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = 'hsl(200,40%,'+(50+i)+'%',
+    c.fillStyle = hsl(200,40,i),
     c.fillRect(0,i*4,320,4);
 
   // update world
@@ -116,7 +119,7 @@ setInterval((e,f) => {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = 'hsl(60,40%,'+(50+i)+'%',
+    c.fillStyle = hsl(60,40,i),
     c.fillRect(0,236-i*4,320,4);
 
   // calculate z-indexes
@@ -138,7 +141,7 @@ setInterval((e,f) => {
       c.fillRect(160 + f.X*120/f.Z - x/2, 120 - f.y*120/f.Z-y/2, x, y);
 
   // draw map for debugging
-//  c.fillStyle = '#000';
+//  c.fillStyle = hsl(0,0,-50);
 //  c.fillRect(160-2,240+160-2,4,4);
 //
 //  for (f of entities) {

@@ -2,10 +2,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     mangle: {
-      reserved: 'acefghixyz',
+      reserved: 'acefghixyzXZ',
       names: [
         'burn',
         'entities',
+        'hsl',
         'player',
         'step'
       ]
