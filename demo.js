@@ -32,12 +32,12 @@ for (x=12;x--;)
 
 // burn leafs
 burn = (e,f) => {
-  e.t = 1,
   e.h = 240,
+  e.t = 1,
   e.p = (e,f) => {
+    e.h--,
     e.c = 'hsla('+Math.random()*50+',100%,'+(50+Math.random()*10)+'%,.5',
-    e.s = Math.random()*10+6,
-    e.h--;
+    e.s = Math.random()*10+6;
     // create smoke
     step%16||entities.push({
       c:e.w?(e.w=0,'#ccc'):'#666',
@@ -46,7 +46,7 @@ burn = (e,f) => {
       z:e.z,
       h:100,
       p:(e,f)=>{
-        e.h--;
+        e.h--,
         e.y+=1/2
       },
       s:4
@@ -80,11 +80,11 @@ setInterval((e,f) => {
       s:1,
       Y:16,
       p:(e,f)=>{
+        e.h--,
         e.x+=e.e,
         e.z+=e.f,
         e.y+=e.Y/6,
-        e.Y-=3/2,
-        e.h--;
+        e.Y-=3/2;
         for (f of entities)
           1==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
             e.h=0,
