@@ -58,7 +58,7 @@ burn = (e,f) => {
           return burn(f)
   }
 },
-burn(entities[1160]),
+burn(entities[160]),
 
 onkeydown = onkeyup = (e,f) =>
   player[e.keyCode-32] = e.type[5],
