@@ -101,7 +101,10 @@ setInterval((e,f) => {
     f.p&&f.p(f);
   entities = entities.filter((e,f)=>e.h>=0),
 
-  a.width=320;
+  // prepare canvas
+  a.width=500,
+  c.translate(90,a.height/2-120|0);
+
   // draw sky
   for (i=30;i--;)
     c.fillStyle = 'hsl(200,40%,'+(50+i)+'%',
@@ -124,7 +127,7 @@ setInterval((e,f) => {
 
   // draw entities
   for (f of entities)
-    if (f.Z > 5 && f.X*120/f.Z < 160)
+    if (f.Z > 8 && f.X*120/f.Z > -160 && f.X*120/f.Z < 160)
       c.fillStyle = f.c,
       x = f.s*120/f.Z,
       y = (f.S||f.s)*120/f.Z,
