@@ -14,15 +14,14 @@ for (x=12;x--;)
     for (
         // create trunk
         entities.push({
-          c: hsl(15,50,-23),
+          c: hsl(i=12,50,-23),
           x: X = x*24+Math.random()*24,
           y: -2,
           z: Z = y*24+Math.random()*24,
           s: 2,
           S: 14,
           h: 1
-        }),
-        i=12;i--;)
+        });i--;)
       // create leaf
       f = Math.random()*7,
       entities.push({
@@ -99,7 +98,7 @@ setInterval((e,f) => {
       },
       s:4,
       h:24
-    });
+    }),
 
   // prepare canvas
   a.width=500,
