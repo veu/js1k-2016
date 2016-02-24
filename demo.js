@@ -9,6 +9,7 @@ entities = [];
 for (x=12;x--;)
   for (y=12;y--;)
     for (
+        // create trunk
         entities.push({
           c: '#632',
           x: X = x*24+Math.random()*24,
@@ -19,6 +20,7 @@ for (x=12;x--;)
           h: 1
         }),
         i=12;i--;)
+      // create leaf
       f = Math.random()*7,
       entities.push({
         c: 'hsl(150,60%,'+(50-i*2)+'%',
@@ -58,6 +60,8 @@ burn = (e,f) => {
           return burn(f)
   }
 },
+
+// start fire
 burn(entities[160]),
 
 onkeydown = onkeyup = (e,f) =>
@@ -69,7 +73,7 @@ setInterval((e,f) => {
   player.x += !!player[6]*Math.sin(player.a) - !!player[8]*Math.sin(player.a),
   player.z += !!player[6]*Math.cos(player.a) - !!player[8]*Math.cos(player.a),
 
-  // splash water
+  // discharge water
   player[0] && entities.push({
       c:'hsl(200,40%,'+(50+Math.random()*10)+'%',
       x:player.x+12*Math.cos(player.a),
@@ -133,7 +137,7 @@ setInterval((e,f) => {
       y = (f.S||f.s)*120/f.Z,
       c.fillRect(160 + f.X*120/f.Z - x/2, 120 - f.y*120/f.Z-y/2, x, y);
 
-  // draw map for debugging (needs height ~= 600)
+  // draw map for debugging
 //  c.fillStyle = '#000';
 //  c.fillRect(160-2,240+160-2,4,4);
 //
