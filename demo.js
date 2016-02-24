@@ -133,11 +133,16 @@ setInterval((e,f) => {
 
   // draw entities
   for (f of entities)
-    if (f.Z > 8 && f.X*120/f.Z > -160 && f.X*120/f.Z < 160)
-      c.fillStyle = f.c,
-      x = f.s*120/f.Z,
-      y = (f.S||f.s)*120/f.Z,
-      c.fillRect(160 + f.X*120/f.Z - x/2, 120 - f.y*120/f.Z-y/2, x, y);
+    f.Z > 8 && f.X*120/f.Z > -160 && f.X*120/f.Z < 160 &&
+      c.fillRect(
+        160 + f.X*120/f.Z - (
+          c.fillStyle = f.c,
+          y = (f.S||f.s)*120/f.Z,
+          x = f.s*120/f.Z
+        )/2,
+        120 - f.y*120/f.Z-y/2,
+        x, y
+      );
 
   // draw map for debugging
 //  c.fillStyle = hsl(0,0,-50);
