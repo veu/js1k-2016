@@ -1,7 +1,7 @@
 player = {
   x:140,
   z:140,
-  a:step = 0
+  a:1
 },
 entities = [];
 
@@ -147,4 +147,4 @@ setInterval((e,f) => {
 //  }
 
   step++
-}, 33)
+}, step = 33)
