@@ -1,7 +1,7 @@
 player = {
   x:140,
   z:140,
-  a:1
+  h:1
 },
 entities = [],
 
@@ -28,7 +28,7 @@ for (x=12;x--;)
       entities.push({
         c: hsl(150,60,-i*2),
         x: X+f*Math.cos(e = Math.random()*7),
-        y: 10-i/2+Math.random()*3|0,
+        y: 10-i/2+Math.random()*3,
         z: Z+f*Math.sin(e),
         t: 2,
         s: 8,
@@ -71,18 +71,18 @@ onkeydown = onkeyup = (e,f) =>
 
 setInterval((e,f) => {
   // move player
-  player.a += (!!player[7] - !!player[5])/20,
-  player.x += !!player[6]*Math.sin(player.a) - !!player[8]*Math.sin(player.a),
-  player.z += !!player[6]*Math.cos(player.a) - !!player[8]*Math.cos(player.a),
+  player.h += (!!player[7] - !!player[5])/20,
+  player.x += !!player[6]*Math.sin(player.h) - !!player[8]*Math.sin(player.h),
+  player.z += !!player[6]*Math.cos(player.h) - !!player[8]*Math.cos(player.h),
 
   // discharge water
   player[0] && entities.push({
       c:hsl(200,40,Math.random()*10),
-      x:player.x+12*Math.cos(player.a),
+      x:player.x+12*Math.cos(player.h),
       y:-8,
-      z:player.z-12*Math.sin(player.a),
-      e:2*Math.sin(player.a-1/2),
-      f:2*Math.cos(player.a-1/2),
+      z:player.z-12*Math.sin(player.h),
+      e:2*Math.sin(player.h-1/2),
+      f:2*Math.cos(player.h-1/2),
       s:1,
       Y:16,
       p:(e,f)=>{
@@ -124,8 +124,8 @@ setInterval((e,f) => {
   for (f of entities)
     x = f.x - player.x,
     z = f.z - player.z,
-    f.X = x * Math.cos(player.a) - z * Math.sin(player.a),
-    f.Z = x * Math.sin(player.a) + z * Math.cos(player.a);
+    f.X = x * Math.cos(player.h) - z * Math.sin(player.h),
+    f.Z = x * Math.sin(player.h) + z * Math.cos(player.h);
 
   // sort entities
   entities.sort((e,f) => f.Z - e.Z);
@@ -150,8 +150,8 @@ setInterval((e,f) => {
 //  for (f of entities) {
 //    x = f.x - player.x;
 //    z = f.z - player.z;
-//    xp = x * Math.cos(player.a) - z * Math.sin(player.a);
-//    zp = x * Math.sin(player.a) + z * Math.cos(player.a);
+//    xp = x * Math.cos(player.h) - z * Math.sin(player.h);
+//    zp = x * Math.sin(player.h) + z * Math.cos(player.h);
 //    c.fillStyle = f.c;
 //    c.fillRect(160+xp-f.s/2,240+160+zp-f.s/2,f.s,f.s)
 //  }
