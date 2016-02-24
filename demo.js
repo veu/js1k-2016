@@ -41,7 +41,7 @@ burn = (e,f) => {
     // create smoke
     step%16||entities.push({
       c:e.w?(e.w=0,'#ccc'):'#666',
-      x:e.x,
+      x:e.x+Math.random()*3,
       y:e.y,
       z:e.z,
       h:100,
