@@ -96,11 +96,6 @@ setInterval((e,f) => {
       h:24
     });
 
-  // update world
-  for (f of entities)
-    f.p&&f.p(f);
-  entities = entities.filter((e,f)=>e.h>=0),
-
   // prepare canvas
   a.width=500,
   c.translate(90,a.height/2-120|0);
@@ -109,6 +104,11 @@ setInterval((e,f) => {
   for (i=30;i--;)
     c.fillStyle = 'hsl(200,40%,'+(50+i)+'%',
     c.fillRect(0,i*4,320,4);
+
+  // update world
+  for (f of entities)
+    f.p&&f.p(f);
+  entities = entities.filter((e,f)=>e.h>=0);
 
   // draw ground
   for (i=30;i--;)
