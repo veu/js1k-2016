@@ -40,8 +40,8 @@ burn = (e,f) => {
   e.t = 1,
   e.p = (e,f) => {
     e.h--;
-    e.c = color(Math.random()*60,100,20),
-    e.s = Math.random()*10+6;
+    e.c = color(Math.random()*60,100,10),
+    e.s = Math.random()*5+6,
     // create smoke
     step%16||entities.push({
       c:color(0,0,e.w?(e.w=0,30):-10),
