@@ -6,7 +6,7 @@ module.exports = function(grunt) {
       names: [
         'burn',
         'entities',
-        'hsl',
+        'color',
         'player',
         'step'
       ]

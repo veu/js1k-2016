@@ -5,8 +5,8 @@ player = {
 },
 entities = [],
 
-hsl = (e,f,g,h) =>
-  'hsla('+[e,f+'%',50+g+'%',h||1];
+color = (e,f,g) =>
+  'hsl('+[e,f+'%',50+g+'%'];
 
 // add trees
 for (x=20;x--;)
@@ -14,7 +14,7 @@ for (x=20;x--;)
     for (
         // create trunk
         entities.push({
-          c: hsl(i=12,40,-24),
+          c: color(i=12,40,-24),
           x: X = x*24+Math.random()*24,
           y: -2,
           z: Z = y*24+Math.random()*24,
@@ -25,7 +25,7 @@ for (x=20;x--;)
       // create leaf
       f = Math.random()*7,
       entities.push({
-        c: hsl(150,60,-i*2),
+        c: color(150,60,-i*2),
         x: X+f*Math.cos(e = Math.random()*7),
         y: 10-i/2+Math.random()*3,
         z: Z+f*Math.sin(e),
@@ -40,11 +40,11 @@ burn = (e,f) => {
   e.t = 1,
   e.p = (e,f) => {
     e.h--;
-    e.c = hsl(Math.random()*50,100,Math.random()*10,1/2),
+    e.c = color(Math.random()*60,100,20),
     e.s = Math.random()*10+6;
     // create smoke
     step%16||entities.push({
-      c:hsl(0,0,e.w?(e.w=0,30):-10),
+      c:color(0,0,e.w?(e.w=0,30):-10),
       x:e.x+Math.random()*3,
       y:e.y,
       z:e.z,
@@ -76,7 +76,7 @@ setInterval((e,f) => {
 
   // discharge water
   player[0] && entities.push({
-      c:hsl(200,40,Math.random()*10),
+      c:color(200,40,Math.random()*10),
       x:player.x+12*Math.cos(player.h),
       y:-8,
       z:player.z-12*Math.sin(player.h),
@@ -106,7 +106,7 @@ setInterval((e,f) => {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = hsl(160,40,i),
+    c.fillStyle = color(160,40,i),
     c.fillRect(0,i*4,320,4);
 
   // update world
@@ -116,7 +116,7 @@ setInterval((e,f) => {
 
   // draw background forest
   for (i=30;i--;)
-    c.fillStyle = hsl(160,40,i-40),
+    c.fillStyle = color(160,40,i-40),
     c.fillRect(0,220-i*4,320,4);
 
   // calculate coordinates relative to player
@@ -131,7 +131,7 @@ setInterval((e,f) => {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = hsl(70,40,i),
+    c.fillStyle = color(70,40,i),
     c.fillRect(0,236-i*4,320,4);
 
   // draw entities
@@ -148,7 +148,7 @@ setInterval((e,f) => {
       );
 
   // draw map for debugging
-//  c.fillStyle = hsl(0,0,-50);
+//  c.fillStyle = color(0,0,-50);
 //  c.fillRect(160-2,240+160-2,4,4);
 //
 //  for (f of entities) {
