@@ -14,7 +14,7 @@ for (x=12;x--;)
     for (
         // create trunk
         entities.push({
-          c: hsl(i=12,50,-23),
+          c: hsl(i=12,40,-24),
           x: X = x*24+Math.random()*24,
           y: -2,
           z: Z = y*24+Math.random()*24,
@@ -114,12 +114,12 @@ setInterval((e,f) => {
     f.p&&f.p(f);
   entities = entities.filter((e,f)=>e.h>=0);
 
-  // draw ground
+  // draw background forest
   for (i=30;i--;)
-    c.fillStyle = hsl(60,40,i),
-    c.fillRect(0,236-i*4,320,4);
+    c.fillStyle = hsl(160,40,i-40),
+    c.fillRect(0,220-i*4,320,4);
 
-  // calculate z-indexes
+  // calculate coordinates relative to player
   for (f of entities)
     x = f.x - player.x,
     z = f.z - player.z,
@@ -128,6 +128,11 @@ setInterval((e,f) => {
 
   // sort entities
   entities.sort((e,f) => f.Z - e.Z);
+
+  // draw ground
+  for (i=30;i--;)
+    c.fillStyle = hsl(70,40,i),
+    c.fillRect(0,236-i*4,320,4);
 
   // draw entities
   for (f of entities)
