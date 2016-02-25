@@ -147,18 +147,5 @@ setInterval((e,f) => {
         x, y
       );
 
-  // draw map for debugging
-//  c.fillStyle = color(0,0,-50);
-//  c.fillRect(160-2,240+160-2,4,4);
-//
-//  for (f of entities) {
-//    x = f.x - player.x;
-//    z = f.z - player.z;
-//    xp = x * Math.cos(player.h) - z * Math.sin(player.h);
-//    zp = x * Math.sin(player.h) + z * Math.cos(player.h);
-//    c.fillStyle = f.c;
-//    c.fillRect(160+xp-f.s/2,240+160+zp-f.s/2,f.s,f.s)
-//  }
-
   step++
 }, step = 33)
