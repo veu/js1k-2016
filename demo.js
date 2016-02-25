@@ -1,6 +1,6 @@
 player = {
-  x:140,
-  z:140,
+  x:210,
+  z:210,
   h:1
 },
 entities = [],
@@ -9,8 +9,8 @@ hsl = (e,f,g,h) =>
   'hsla('+[e,f+'%',50+g+'%',h||1];
 
 // add trees
-for (x=12;x--;)
-  for (y=12;y--;)
+for (x=20;x--;)
+  for (y=20;y--;)
     for (
         // create trunk
         entities.push({
@@ -57,7 +57,7 @@ burn = (e,f) => {
     }),
     // spread fire
     step%160 || entities.some(
-      f => 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<1 && !burn(f)
+      f => 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f)
     )
   }
 },
