@@ -36,7 +36,7 @@ for (x=12;x--;)
 
 // burn leafs
 burn = (e,f) => {
-  e.h = 240,
+  e.h = 480,
   e.t = 1,
   e.p = (e,f) => {
     e.h--;
@@ -56,7 +56,7 @@ burn = (e,f) => {
       s:4
     }),
     // spread fire
-    step%80 || entities.some(
+    step%160 || entities.some(
       f => 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<1 && !burn(f)
     )
   }
