@@ -106,7 +106,7 @@ setInterval((e,f) => {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = hsl(200,40,i),
+    c.fillStyle = hsl(160,40,i),
     c.fillRect(0,i*4,320,4);
 
   // update world
