@@ -3,10 +3,11 @@ player = {
   z:210,
   h:1
 },
-entities = [],
 
-color = (e,f,g) =>
-  'hsl('+[e,f+'%',50+g+'%'];
+entities = [
+  color = (e,f,g) =>
+    'hsl('+[e,f+'%',50+g+'%']
+];
 
 // add trees
 for (x=20;x--;)
