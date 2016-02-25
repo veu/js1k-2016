@@ -35,7 +35,7 @@ for (x=20;x--;)
         h: 1
       });
 
-// burn leafs
+// burn a leaf
 burn = (e,f) => {
   e.h = 480,
   e.t = 1,
