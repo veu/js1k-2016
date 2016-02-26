@@ -16,8 +16,8 @@ for (x=20;x--;)
     for (X=x*24+Math.random()*24,Z=y*24+Math.random()*24,i=14;i--;)
       // create trunk
       entities.push({
-        c: color(12,40,-24),
-        x: X,
+        c: color(12,40,i-34),
+        x: X-i/160,
         y: i-7,
         z: Z,
         s: 2,
