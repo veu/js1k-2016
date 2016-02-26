@@ -1,4 +1,4 @@
-playerX = playerZ = playerA = 210,
+playerX = playerZ = playerA = 202,
 
 entities = [
   // doubles as object for active keys
