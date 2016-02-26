@@ -5,8 +5,9 @@ player = {
 },
 
 entities = [
-  color = (e,f,g) =>
-    'hsl('+[e,f+'%',50+g+'%']
+  color = function (e,f,g) {
+    return 'hsl('+[e,f+'%',50+g+'%']
+  }
 ];
 
 // add trees
@@ -36,29 +37,31 @@ for (x=20;x--;)
       });
 
 // burn a leaf
-burn = (e,f) => {
+burn = function (e,f,g) {
   e.h = 480,
   e.t = 1,
-  e.p = (e,f) => {
+  e.p = function (e,f,g) {
     e.h--;
     e.c = color(Math.random()*60,100,10),
     e.s = Math.random()*5+6,
     // create smoke
     step%16||entities.push({
-      c:color(0,0,e.w?(e.w=0,30):-10),
-      x:e.x+Math.random()*3,
-      y:e.y,
-      z:e.z,
-      h:100,
-      p:(e,f)=>{
+      c: color(0,0,e.w?(e.w=0,30):-10),
+      x: e.x+Math.random()*3,
+      y: e.y,
+      z: e.z,
+      h: 100,
+      p: function (e,f,g) {
         e.h--;
         e.y+=1/2
       },
-      s:4
+      s: 4
     }),
     // spread fire
     step%160 || entities.some(
-      f => 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f)
+      function (f) {
+        return 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f)
+      }
     )
   }
 },
@@ -66,10 +69,11 @@ burn = (e,f) => {
 // start fire
 burn(entities[160]),
 
-onkeydown = onkeyup = (e,f) =>
-  player[e.keyCode-32] = e.type[5],
+onkeydown = onkeyup = function (e,f,g) {
+  player[e.keyCode-32] = e.type[5]
+},
 
-setInterval((e,f) => {
+setInterval(function (e,f,g) {
   // move player
   player.h += (!!player[7] - !!player[5])/20,
   player.x += !!player[6]*Math.sin(player.h) - !!player[8]*Math.sin(player.h),
@@ -85,7 +89,7 @@ setInterval((e,f) => {
       f:2*Math.cos(player.h-1/2),
       s:1,
       Y:16,
-      p:(e,f)=>{
+      p:function (e,f,g) {
         e.h--;
         e.x+=e.e,
         e.z+=e.f,
@@ -113,7 +117,9 @@ setInterval((e,f) => {
   // update world
   for (f of entities)
     f.p&&f.p(f);
-  entities = entities.filter((e,f)=>e.h>=0);
+  entities = entities.filter(function (e,f,g) {
+    return e.h>=0
+  });
 
   // draw background forest
   for (i=30;i--;)
@@ -128,7 +134,9 @@ setInterval((e,f) => {
     f.Z = x * Math.sin(player.h) + z * Math.cos(player.h);
 
   // sort entities
-  entities.sort((e,f) => f.Z - e.Z);
+  entities.sort(function (e,f,g) {
+    return f.Z - e.Z
+  });
 
   // draw ground
   for (i=30;i--;)
