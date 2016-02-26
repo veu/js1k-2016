@@ -80,15 +80,15 @@ setInterval(function (e,f,g) {
 
   // discharge water
   player[0] && entities.push({
-      c:color(200,40,Math.random()*10),
-      x:player.x+12*Math.cos(player.h),
-      y:-8,
-      z:player.z-12*Math.sin(player.h),
-      e:2*Math.sin(player.h-1/2),
-      f:2*Math.cos(player.h-1/2),
-      s:1,
-      Y:16,
-      p:function (e,f,g) {
+      c: color(200,40,Math.random()*10),
+      x: player.x+12*Math.cos(player.h),
+      y: -8,
+      z: player.z-12*Math.sin(player.h),
+      e: 2*Math.sin(player.h-1/2),
+      f: 2*Math.cos(player.h-1/2),
+      s: 1,
+      Y: 16,
+      p: function (e,f,g) {
         e.h--;
         e.x+=e.e,
         e.z+=e.f,
@@ -100,8 +100,8 @@ setInterval(function (e,f,g) {
             f.h-=f.w=9
           )
       },
-      s:4,
-      h:24
+      s: 4,
+      h: 24
     }),
 
   // prepare canvas
