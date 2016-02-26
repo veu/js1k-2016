@@ -58,11 +58,10 @@ burn = function (e,f,g) {
       s: 4
     }),
     // spread fire
-    step%160 || entities.some(
-      function (f) {
-        return 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f)
-      }
-    )
+    if (step%160) return;
+    for (f of entities)
+      if (2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f))
+        return
   }
 },
 
