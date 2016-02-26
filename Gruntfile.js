@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         'entities',
         'color',
         'playerX',
-        'playerY',
+        'playerZ',
         'playerA',
         'step'
       ]
