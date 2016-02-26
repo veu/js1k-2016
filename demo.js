@@ -1,28 +1,25 @@
-player = {
-  x:210,
-  z:210,
-  h:1
-},
+playerX = playerZ = playerA = 202,
 
 entities = [
-  color = (e,f,g) =>
-    'hsl('+[e,f+'%',50+g+'%']
+  // doubles as object for active keys
+  color = function (e,f,g) {
+    return 'hsl('+[e,f+'%',50+g+'%']
+  }
 ];
 
 // add trees
 for (x=20;x--;)
   for (y=20;y--;)
-    for (
-        // create trunk
-        entities.push({
-          c: color(i=12,40,-24),
-          x: X = x*24+Math.random()*24,
-          y: -2,
-          z: Z = y*24+Math.random()*24,
-          s: 2,
-          S: 14,
-          h: 1
-        });i--;)
+    for (X=x*24+Math.random()*24,Z=y*24+Math.random()*24,i=14;i--;)
+      // create trunk segment
+      entities.push({
+        c: color(12,40,i-34),
+        x: X-i/160,
+        y: i-7,
+        z: Z,
+        s: 2,
+        h: 1
+      }),
       // create leaf
       f = Math.random()*7,
       entities.push({
@@ -36,56 +33,58 @@ for (x=20;x--;)
       });
 
 // burn a leaf
-burn = (e,f) => {
+burn = function (e,f,g) {
   e.h = 480,
   e.t = 1,
-  e.p = (e,f) => {
+  e.p = function (e,f,g) {
     e.h--;
     e.c = color(Math.random()*60,100,10),
     e.s = Math.random()*5+6,
     // create smoke
     step%16||entities.push({
-      c:color(0,0,e.w?(e.w=0,30):-10),
-      x:e.x+Math.random()*3,
-      y:e.y,
-      z:e.z,
-      h:100,
-      p:(e,f)=>{
+      c: color(0,0,e.w?(e.w=0,30):-10),
+      x: e.x+Math.random()*3,
+      y: e.y,
+      z: e.z,
+      h: 100,
+      p: function (e,f,g) {
         e.h--;
         e.y+=1/2
       },
-      s:4
-    }),
+      s: 4
+    });
     // spread fire
-    step%160 || entities.some(
-      f => 2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f)
-    )
+    if (step%160) return;
+    for (f of entities)
+      if (2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f))
+        return
   }
 },
 
 // start fire
 burn(entities[160]),
 
-onkeydown = onkeyup = (e,f) =>
-  player[e.keyCode-32] = e.type[5],
+onkeydown = onkeyup = function (e,f,g) {
+  color[e.keyCode-32] = e.type[5]
+},
 
-setInterval((e,f) => {
-  // move player
-  player.h += (!!player[7] - !!player[5])/20,
-  player.x += !!player[6]*Math.sin(player.h) - !!player[8]*Math.sin(player.h),
-  player.z += !!player[6]*Math.cos(player.h) - !!player[8]*Math.cos(player.h),
+setInterval(function (e,f,g) {
+  // move color
+  playerA += (!!color[7] - !!color[5])/20,
+  playerX += !!color[6]*Math.sin(playerA) - !!color[8]*Math.sin(playerA),
+  playerZ += !!color[6]*Math.cos(playerA) - !!color[8]*Math.cos(playerA),
 
   // discharge water
-  player[0] && entities.push({
-      c:color(200,40,Math.random()*10),
-      x:player.x+12*Math.cos(player.h),
-      y:-8,
-      z:player.z-12*Math.sin(player.h),
-      e:2*Math.sin(player.h-1/2),
-      f:2*Math.cos(player.h-1/2),
-      s:1,
-      Y:16,
-      p:(e,f)=>{
+  color[0] && entities.push({
+      c: color(200,40,Math.random()*10),
+      x: playerX+12*Math.cos(playerA),
+      y: -8,
+      z: playerZ-12*Math.sin(playerA),
+      e: 2*Math.sin(playerA-1/2),
+      f: 2*Math.cos(playerA-1/2),
+      s: 1,
+      Y: 16,
+      p: function (e,f,g) {
         e.h--;
         e.x+=e.e,
         e.z+=e.f,
@@ -97,8 +96,8 @@ setInterval((e,f) => {
             f.h-=f.w=9
           )
       },
-      s:4,
-      h:24
+      s: 4,
+      h: 24
     }),
 
   // prepare canvas
@@ -113,22 +112,26 @@ setInterval((e,f) => {
   // update world
   for (f of entities)
     f.p&&f.p(f);
-  entities = entities.filter((e,f)=>e.h>=0);
+  entities = entities.filter(function (e,f,g) {
+    return e.h>=0
+  });
 
   // draw background forest
   for (i=30;i--;)
     c.fillStyle = color(160,40,i-40),
     c.fillRect(0,220-i*4,320,4);
 
-  // calculate coordinates relative to player
+  // calculate coordinates relative to color
   for (f of entities)
-    x = f.x - player.x,
-    z = f.z - player.z,
-    f.X = x * Math.cos(player.h) - z * Math.sin(player.h),
-    f.Z = x * Math.sin(player.h) + z * Math.cos(player.h);
+    x = f.x - playerX,
+    z = f.z - playerZ,
+    f.X = x * Math.cos(playerA) - z * Math.sin(playerA),
+    f.Z = x * Math.sin(playerA) + z * Math.cos(playerA);
 
   // sort entities
-  entities.sort((e,f) => f.Z - e.Z);
+  entities.sort(function (e,f,g) {
+    return f.Z - e.Z
+  });
 
   // draw ground
   for (i=30;i--;)
@@ -141,7 +144,7 @@ setInterval((e,f) => {
       c.fillRect(
         160 + f.X*120/f.Z - (
           c.fillStyle = f.c,
-          y = (f.S||f.s)*120/f.Z,
+          y = f.s*120/f.Z,
           x = f.s*120/f.Z
         )/2,
         120 - f.y*120/f.Z-y/2,
