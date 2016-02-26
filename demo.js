@@ -56,7 +56,7 @@ burn = function (e,f,g) {
         e.y+=1/2
       },
       s: 4
-    }),
+    });
     // spread fire
     if (step%160) return;
     for (f of entities)
