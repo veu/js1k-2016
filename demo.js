@@ -1,10 +1,7 @@
-player = {
-  x:210,
-  z:210,
-  h:1
-},
+playerX = playerZ = playerA = 210,
 
 entities = [
+  // doubles as object for active keys
   color = function (e,f,g) {
     return 'hsl('+[e,f+'%',50+g+'%']
   }
@@ -14,7 +11,7 @@ entities = [
 for (x=20;x--;)
   for (y=20;y--;)
     for (X=x*24+Math.random()*24,Z=y*24+Math.random()*24,i=14;i--;)
-      // create trunk
+      // create trunk segment
       entities.push({
         c: color(12,40,i-34),
         x: X-i/160,
@@ -68,23 +65,23 @@ burn = function (e,f,g) {
 burn(entities[160]),
 
 onkeydown = onkeyup = function (e,f,g) {
-  player[e.keyCode-32] = e.type[5]
+  color[e.keyCode-32] = e.type[5]
 },
 
 setInterval(function (e,f,g) {
-  // move player
-  player.h += (!!player[7] - !!player[5])/20,
-  player.x += !!player[6]*Math.sin(player.h) - !!player[8]*Math.sin(player.h),
-  player.z += !!player[6]*Math.cos(player.h) - !!player[8]*Math.cos(player.h),
+  // move color
+  playerA += (!!color[7] - !!color[5])/20,
+  playerX += !!color[6]*Math.sin(playerA) - !!color[8]*Math.sin(playerA),
+  playerZ += !!color[6]*Math.cos(playerA) - !!color[8]*Math.cos(playerA),
 
   // discharge water
-  player[0] && entities.push({
+  color[0] && entities.push({
       c: color(200,40,Math.random()*10),
-      x: player.x+12*Math.cos(player.h),
+      x: playerX+12*Math.cos(playerA),
       y: -8,
-      z: player.z-12*Math.sin(player.h),
-      e: 2*Math.sin(player.h-1/2),
-      f: 2*Math.cos(player.h-1/2),
+      z: playerZ-12*Math.sin(playerA),
+      e: 2*Math.sin(playerA-1/2),
+      f: 2*Math.cos(playerA-1/2),
       s: 1,
       Y: 16,
       p: function (e,f,g) {
@@ -124,12 +121,12 @@ setInterval(function (e,f,g) {
     c.fillStyle = color(160,40,i-40),
     c.fillRect(0,220-i*4,320,4);
 
-  // calculate coordinates relative to player
+  // calculate coordinates relative to color
   for (f of entities)
-    x = f.x - player.x,
-    z = f.z - player.z,
-    f.X = x * Math.cos(player.h) - z * Math.sin(player.h),
-    f.Z = x * Math.sin(player.h) + z * Math.cos(player.h);
+    x = f.x - playerX,
+    z = f.z - playerZ,
+    f.X = x * Math.cos(playerA) - z * Math.sin(playerA),
+    f.Z = x * Math.sin(playerA) + z * Math.cos(playerA);
 
   // sort entities
   entities.sort(function (e,f,g) {
