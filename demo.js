@@ -13,7 +13,7 @@ entities = [
 // add trees
 for (x=20;x--;)
   for (y=20;y--;)
-    for (i=14,X = x*24+Math.random()*24,Z = y*24+Math.random()*24;i--;)
+    for (X=x*24+Math.random()*24,Z=y*24+Math.random()*24,i=14;i--;)
       // create trunk
       entities.push({
         c: color(12,40,-24),
