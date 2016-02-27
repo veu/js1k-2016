@@ -121,10 +121,7 @@ setInterval(function (e,f,g) {
 
   // calculate coordinates relative to color
   for (f of entities)
-    x = f.x - playerX,
-    z = f.z - playerZ,
-    f.X = x * Math.cos(playerA) - z * Math.sin(playerA),
-    f.Z = x * Math.sin(playerA) + z * Math.cos(playerA);
+    f.Z = (f.x - playerX) * Math.sin(playerA) + (f.z - playerZ) * Math.cos(playerA);
 
   // sort entities
   entities.sort(function (e,f,g) {
@@ -138,7 +135,7 @@ setInterval(function (e,f,g) {
 
   // draw entities
   for (f of entities)
-    f.Z > 8 && Math.abs(e = f.X*120/f.Z) < 160 &&
+    f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
       c.fillRect(
         160 + e - (
           c.fillStyle = f.c,
