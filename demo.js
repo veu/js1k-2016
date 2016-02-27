@@ -8,8 +8,8 @@ entities = [
 ];
 
 // add trees
-for (x=20;x--;)
-  for (y=20;y--;)
+for (x=16;x--;)
+  for (y=16;y--;)
     for (
         // create trunk
         entities.push({
