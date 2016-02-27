@@ -10,7 +10,7 @@ entities = [
 // add trees
 for (x=20;x--;)
   for (y=20;y--;)
-    for (X=x*24+Math.random()*24,Z=y*24+Math.random()*24,i=14;i--;)
+    for (X=x*24+Math.random()*24,Z=y*24+Math.random()*24,i=12;i--;)
       // create trunk segment
       entities.push({
         c: color(12,40,i-34),
