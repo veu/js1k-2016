@@ -25,7 +25,7 @@ for (x=20;x--;)
       entities.push({
         c: color(150,60,-i*2),
         x: X+f*Math.cos(e = Math.random()*7),
-        y: 10-i/2+Math.random()*3,
+        y: 10-i/2,
         z: Z+f*Math.sin(e),
         t: 2,
         s: 8,
