@@ -94,7 +94,7 @@ setInterval(function (e,f,g) {
             f.h-=f.w=9
           )
       },
-      s: 4,
+      s: 3,
       h: 24
     }),
 
