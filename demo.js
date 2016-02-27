@@ -29,13 +29,12 @@ for (x=20;x--;)
         y: 10-i/2,
         z: Z+f*Math.sin(e),
         s: 8,
-        h: 1
+        h: 480
       });
 
 // burn a leaf
 burn = function (e,f,g) {
-  e.h = e.t = 480,
-  e.p = function (e,f,g) {
+  e.t = e.p = function (e,f,g) {
     e.h--;
     e.c = color(Math.random()*60,100,10),
     e.s = Math.random()*5+6,
