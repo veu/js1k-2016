@@ -10,16 +10,17 @@ entities = [
 // add trees
 for (x=20;x--;)
   for (y=20;y--;)
-    for (X=x*24+Math.random()*24,Z=y*24+Math.random()*24,i=12;i--;)
-      // create trunk segment
-      entities.push({
-        c: color(12,40,i-34),
-        x: X-i/160,
-        y: i-7,
-        z: Z,
-        s: 2,
-        h: 1
-      }),
+    for (
+        // create trunk
+        entities.push({
+          c: color(i=12,40,-24),
+          x: X = x*24+Math.random()*24,
+          y: -2,
+          z: Z = y*24+Math.random()*24,
+          s: 2,
+          S: 14,
+          h: 1
+        });i--;)
       // create leaf
       f = Math.random()*7,
       entities.push({
@@ -142,7 +143,7 @@ setInterval(function (e,f,g) {
       c.fillRect(
         160 + f.X*120/f.Z - (
           c.fillStyle = f.c,
-          y = f.s*120/f.Z,
+          y = (f.S||f.s)*120/f.Z,
           x = f.s*120/f.Z
         )/2,
         120 - f.y*120/f.Z-y/2,
