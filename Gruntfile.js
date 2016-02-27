@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     },
     exec: {
         regpack: {
-            cmd: 'RegPack/bin/regpack build/demo.mng.js > build/demo.zip.js'
+            cmd: 'RegPack/bin/regpack build/demo.mng.js --withMath > build/demo.zip.js'
         }
     }
   });
