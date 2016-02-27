@@ -14,10 +14,6 @@ Clone the repository and run the following commands
 
 ```
 npm install
-git clone https://github.com/Siorki/RegPack.git
-cd RegPack/
-npm install
-cd ..
 grunt
 ```
 

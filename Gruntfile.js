@@ -13,10 +13,12 @@ module.exports = function(grunt) {
         'step'
       ]
     },
-    exec: {
-        regpack: {
-            cmd: 'RegPack/bin/regpack build/demo.mng.js --withMath --crushGainFactor=1 --crushLengthFactor=0 > build/demo.zip.js'
-        }
+    regpack: {
+      args: {
+        withMath: true,
+        crushGainFactor: 1,
+        crushLengthFactor: 0
+      }
     }
   });
 
@@ -78,6 +80,14 @@ module.exports = function(grunt) {
     fs.writeFileSync('build/shim.html', shim);
   });
 
-  grunt.registerTask('default', ['minify', 'mangle', 'exec:regpack', 'compile']);
+  grunt.registerTask('regpack', function() {
+    var fs = require('fs'),
+        cmdRegPack = require('./node_modules/regpack').cmdRegPack,
+        args = grunt.config('regpack.args'),
+    result = cmdRegPack(fs.readFileSync('build/demo.mng.js', 'utf-8'), args);
+    fs.writeFileSync('build/demo.zip.js', result);
+  });
+
+  grunt.registerTask('default', ['minify', 'mangle', 'regpack', 'compile']);
 
 };
