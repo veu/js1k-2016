@@ -140,7 +140,7 @@ setInterval(function (e,f,g) {
 
   // draw entities
   for (f of entities)
-    f.Z > 8 && f.X*120/f.Z > -160 && f.X*120/f.Z < 160 &&
+    f.Z > 8 && Math.abs(f.X*120/f.Z) < 160 &&
       c.fillRect(
         160 + f.X*120/f.Z - (
           c.fillStyle = f.c,
