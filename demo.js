@@ -43,7 +43,7 @@ burn = function (e,f,g) {
     // create smoke
     step%16||entities.push({
       c: color(0,0,e.w?(e.w=0,30):-10),
-      x: e.x+Math.random()*3,
+      x: e.x+Math.random()*6,
       y: e.y,
       z: e.z,
       h: 100,
