@@ -27,15 +27,13 @@ for (x=20;x--;)
         x: X+f*Math.cos(e = Math.random()*7),
         y: 10-i/2,
         z: Z+f*Math.sin(e),
-        t: 2,
         s: 8,
         h: 1
       });
 
 // burn a leaf
 burn = function (e,f,g) {
-  e.h = 480,
-  e.t = 1,
+  e.h = e.t = 480,
   e.p = function (e,f,g) {
     e.h--;
     e.c = color(Math.random()*60,100,10),
@@ -56,7 +54,7 @@ burn = function (e,f,g) {
     // spread fire
     if (step%160) return;
     for (f of entities)
-      if (2==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f))
+      if (f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f))
         return
   }
 },
@@ -91,7 +89,7 @@ setInterval(function (e,f,g) {
         e.y+=e.Y/6,
         e.Y-=3/2;
         for (f of entities)
-          1==f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
+          f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
             e.h=0,
             f.h-=f.w=9
           )
