@@ -8,7 +8,7 @@ for (x=16;x--;)
     for (
         // create trunk
         entities.push({
-          c: [i=12,40,-24],
+          c: [i=12,40,-20],
           x: X = x*24+Math.random()*24,
           y: -2,
           z: Z = y*24+Math.random()*24,
