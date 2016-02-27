@@ -129,7 +129,7 @@ setInterval(function (e,f,g) {
 
   // draw entities
   for (f of entities)
-    f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
+    f.s-4 && f.Z > 160 || f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
       c.fillRect(
         160 + e - (
           c.fillStyle = 'hsl('+[f.c[0],f.c[1]+'%',f.c[2]+f.Z/6+46]+'%',
