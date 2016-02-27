@@ -1,5 +1,5 @@
 entities = [
-  playerX = playerZ = playerA = 202
+    playerX = playerZ = playerA = 202
 ];
 
 // add trees
@@ -49,7 +49,7 @@ burn = function (e,f,g) {
     // spread fire
     if (step%160) return;
     for (f of entities)
-      if (f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*100<2 && !burn(f))
+      if (f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && !burn(f))
         return
   }
 },
@@ -76,13 +76,12 @@ setInterval(function (e,f,g) {
     e: 2*Math.sin(playerA-1/2),
     f: 2*Math.cos(playerA-1/2),
     s: 1,
-    Y: 16,
+    Y: 8/3,
     p: function (e,f,g) {
       e.h--;
       e.x+=e.e,
       e.z+=e.f,
-      e.y+=e.Y/6,
-      e.Y-=3/2;
+      e.y+=e.Y-=1/4;
       for (f of entities)
         f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
           e.h=0,
@@ -133,7 +132,7 @@ setInterval(function (e,f,g) {
     f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
       c.fillRect(
         160 + e - (
-          c.fillStyle = 'hsl('+[f.c[0],f.c[1]+'%',f.c[2]+f.Z/6+46+'%'],
+          c.fillStyle = 'hsl('+[f.c[0],f.c[1]+'%',f.c[2]+f.Z/6+46]+'%',
           y = (f.S||f.s)*120/f.Z,
           x = f.s*120/f.Z
         )/2,
