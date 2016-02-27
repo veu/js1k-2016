@@ -138,9 +138,9 @@ setInterval(function (e,f,g) {
 
   // draw entities
   for (f of entities)
-    f.Z > 8 && Math.abs(f.X*120/f.Z) < 160 &&
+    f.Z > 8 && Math.abs(e = f.X*120/f.Z) < 160 &&
       c.fillRect(
-        160 + f.X*120/f.Z - (
+        160 + e - (
           c.fillStyle = f.c,
           y = (f.S||f.s)*120/f.Z,
           x = f.s*120/f.Z
