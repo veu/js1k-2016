@@ -3,7 +3,7 @@ playerX = playerZ = playerA = 202,
 entities = [
   // doubles as object for active keys
   color = function (e,f,g) {
-    return 'hsl('+[e,f+'%',50+g+'%']
+    c.fillStyle = 'hsl('+[e,f+'%',50+g+'%']
   }
 ];
 
@@ -13,7 +13,7 @@ for (x=16;x--;)
     for (
         // create trunk
         entities.push({
-          c: color(i=12,40,-24),
+          c: [i=12,40,-24],
           x: X = x*24+Math.random()*24,
           y: -2,
           z: Z = y*24+Math.random()*24,
@@ -24,7 +24,7 @@ for (x=16;x--;)
       // create leaf
       f = Math.random()*7,
       entities.push({
-        c: color(150,60,-i*2),
+        c: [150,60,-i*2],
         x: X+f*Math.cos(e = Math.random()*7),
         y: 10-i/2,
         z: Z+f*Math.sin(e),
@@ -36,11 +36,11 @@ for (x=16;x--;)
 burn = function (e,f,g) {
   e.t = e.p = function (e,f,g) {
     e.h--;
-    e.c = color(Math.random()*60,100,10),
+    e.c = [Math.random()*60,100,10],
     e.s = Math.random()*5+6,
     // create smoke
     step%16||entities.push({
-      c: color(0,0,e.w?(e.w=0,30):-10),
+      c: [0,0,e.w?(e.w=0,30):-10],
       x: e.x+Math.random()*6,
       y: e.y,
       z: e.z,
@@ -74,7 +74,7 @@ setInterval(function (e,f,g) {
 
   // discharge water
   color[0] && entities.push({
-      c: color(200,40,Math.random()*10),
+      c: [200,40,Math.random()*10],
       x: playerX+12*Math.cos(playerA),
       y: -8,
       z: playerZ-12*Math.sin(playerA),
@@ -104,7 +104,7 @@ setInterval(function (e,f,g) {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = color(160,40,i),
+    color(160,40,i),
     c.fillRect(0,i*4,320,4);
 
   // update world
@@ -116,7 +116,7 @@ setInterval(function (e,f,g) {
 
   // draw background forest
   for (i=30;i--;)
-    c.fillStyle = color(160,40,i-40),
+    color(160,40,i-40),
     c.fillRect(0,220-i*4,320,4);
 
   // calculate coordinates relative to color
@@ -130,7 +130,7 @@ setInterval(function (e,f,g) {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = color(70,40,i),
+    color(70,40,i),
     c.fillRect(0,236-i*4,320,4);
 
   // draw entities
@@ -138,7 +138,7 @@ setInterval(function (e,f,g) {
     f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
       c.fillRect(
         160 + e - (
-          c.fillStyle = f.c,
+          color(f.c[0],f.c[1],f.c[2]+f.Z/6-4),
           y = (f.S||f.s)*120/f.Z,
           x = f.s*120/f.Z
         )/2,
