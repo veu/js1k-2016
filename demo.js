@@ -69,7 +69,7 @@ setInterval(function (e,f,g) {
 
   // discharge water
   burn[0] && entities.push({
-    c: [200,40,Math.random()*10],
+    c: [200,40,Math.random()*5],
     x: playerX+12*Math.cos(playerA),
     y: -8,
     z: playerZ-12*Math.sin(playerA),
