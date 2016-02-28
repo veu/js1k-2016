@@ -64,7 +64,7 @@ burn = function (e,f,g) {
 },
 
 // start fire
-burn(entities[160]),
+burn(entities[162]),
 
 onkeydown = onkeyup = function (e,f,g) {
   burn[e.keyCode-32] = e.type[5]
