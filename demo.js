@@ -47,10 +47,9 @@ burn = function (e,f,g) {
       s: 4
     });
     // spread fire
-    if (step%160) return;
-    for (f of entities)
-      if (f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && !burn(f))
-        return
+    entities.some(function (f) {
+      return step%160 || f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && !burn(f)
+    });
   }
 },
 
@@ -69,7 +68,7 @@ setInterval(function (e,f,g) {
 
   // discharge water
   burn[0] && entities.push({
-    c: [200,40,Math.random()*10],
+    c: [200,40,Math.random()*5],
     x: playerX+12*Math.cos(playerA),
     y: -8,
     z: playerZ-12*Math.sin(playerA),
@@ -82,28 +81,32 @@ setInterval(function (e,f,g) {
       e.x+=e.e,
       e.z+=e.f,
       e.y+=e.Y-=1/4;
-      for (f of entities)
+      entities.some(function (f) {
         f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
           e.h=0,
           f.h-=f.w=9
         )
+      });
     },
     s: 3,
-    h: 24
-  }),
+    h: 20
+  });
 
   // prepare canvas
   a.width=500,
   c.translate(90,a.height/2-120|0);
+
+  // update entities
+  entities.some(function (f) {
+    f.p&&f.p(f)
+  });
 
   // draw sky
   for (i=30;i--;)
     c.fillStyle = 'hsl(160,40%,'+(50+i)+'%',
     c.fillRect(0,i*4,320,4);
 
-  // update world
-  for (f of entities)
-    f.p&&f.p(f);
+  // remove entities no longer needed
   entities = entities.filter(function (e,f,g) {
     return e.h>=0
   });
@@ -114,8 +117,9 @@ setInterval(function (e,f,g) {
     c.fillRect(0,220-i*4,320,4);
 
   // calculate coordinates relative to burn
-  for (f of entities)
-    f.Z = (f.x - playerX) * Math.sin(playerA) + (f.z - playerZ) * Math.cos(playerA);
+  entities.some(function (f) {
+    f.Z = (f.x - playerX) * Math.sin(playerA) + (f.z - playerZ) * Math.cos(playerA)
+  });
 
   // sort entities
   entities.sort(function (e,f,g) {
@@ -128,7 +132,7 @@ setInterval(function (e,f,g) {
     c.fillRect(0,236-i*4,320,4);
 
   // draw entities
-  for (f of entities)
+  entities.some(function (f) {
     f.s-4 && f.Z > 160 || f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
       c.fillRect(
         160 + e - (
@@ -138,7 +142,8 @@ setInterval(function (e,f,g) {
         )/2,
         120 - f.y*120/f.Z-y/2,
         x, y
-      );
+      )
+  });
 
   step++
 }, step = 33)
