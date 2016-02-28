@@ -1,5 +1,5 @@
 entities = [
-    playerX = playerZ = playerA = 202
+  playerX = playerZ = playerA = 202
 ];
 
 // add trees
@@ -8,7 +8,7 @@ for (x=16;x--;)
     for (
         // create trunk
         entities.push({
-          c: [i=12,60,-20],
+          c: [i=12,60,-30],
           x: X = x*24+Math.random()*24,
           y: -1,
           z: Z = y*24+Math.random()*24,
