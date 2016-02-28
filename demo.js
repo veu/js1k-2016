@@ -86,11 +86,11 @@ setInterval(function (e,f,g) {
           e.h=0,
           f.h-=f.w=9
         )
-      })
+      });
     },
     s: 3,
     h: 20
-  }),
+  });
 
   // prepare canvas
   a.width=500,
