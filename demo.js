@@ -41,7 +41,7 @@ for (x=16;x--;)
 burn = function (e,f,g) {
   e.t = e.p = function (e,f,g) {
     e.h--;
-    e.c = [Math.random()*60,100,10],
+    e.c = [Math.random()*60,100,0],
     e.s = Math.random()*5+6,
     // create smoke
     step%16 || entities.push({
