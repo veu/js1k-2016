@@ -49,7 +49,7 @@ burn = function (e,f,g) {
       x: e.x+Math.random()*6,
       y: e.y,
       z: e.z,
-      h: 100,
+      h: 90,
       p: function (e,f,g) {
         e.h--;
         e.y+=1/2
