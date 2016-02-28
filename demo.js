@@ -80,24 +80,22 @@ setInterval(function (e,f,g) {
   burn[0] && entities.push({
     c: [200,60,Math.random()*5],
     x: playerX+12*Math.cos(playerA),
-    y: -8,
     z: playerZ-12*Math.sin(playerA),
     e: 2*Math.sin(playerA-1/2),
     f: 2*Math.cos(playerA-1/2),
     s: 1,
-    Y: 8/3,
     p: function (e,f,g) {
       e.h--;
       e.x+=e.e,
       e.z+=e.f,
-      e.y+=e.Y-=1/4;
+      e.y = 5-(e.h-10)*(e.h-10)/8,
       entities.some(function (f) {
         f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
           f.h-=f.w=9
         )
       });
     },
-    s: 3,
+    s: 2,
     h: 20
   });
 
