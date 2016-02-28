@@ -93,7 +93,6 @@ setInterval(function (e,f,g) {
       e.y+=e.Y-=1/4;
       entities.some(function (f) {
         f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
-          e.h=0,
           f.h-=f.w=9
         )
       });
