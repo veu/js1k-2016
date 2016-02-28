@@ -73,8 +73,8 @@ onkeydown = onkeyup = function (e,f,g) {
 setInterval(function (e,f,g) {
   // move burn
   playerA += (!!burn[7] - !!burn[5])/20,
-  playerX += !!burn[6]*Math.sin(playerA) - !!burn[8]*Math.sin(playerA),
-  playerZ += !!burn[6]*Math.cos(playerA) - !!burn[8]*Math.cos(playerA),
+  playerX += !!burn[6]*Math.sin(playerA),
+  playerZ += !!burn[6]*Math.cos(playerA),
 
   // discharge water
   burn[0] && entities.push({
