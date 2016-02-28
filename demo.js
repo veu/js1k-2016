@@ -8,7 +8,7 @@ for (x=16;x--;)
     for (
         // create trunk
         entities.push({
-          c: [i=12,40,-20],
+          c: [i=12,60,-20],
           x: X = x*24+Math.random()*24,
           y: -1,
           z: Z = y*24+Math.random()*24,
@@ -78,7 +78,7 @@ setInterval(function (e,f,g) {
 
   // discharge water
   burn[0] && entities.push({
-    c: [200,40,Math.random()*5],
+    c: [200,60,Math.random()*5],
     x: playerX+12*Math.cos(playerA),
     y: -8,
     z: playerZ-12*Math.sin(playerA),
@@ -113,7 +113,7 @@ setInterval(function (e,f,g) {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = 'hsl(160,40%,'+(50+i)+'%',
+    c.fillStyle = 'hsl(160,60%,'+(50+i)+'%',
     c.fillRect(0,i*4,320,4);
 
   // remove entities no longer needed
@@ -123,7 +123,7 @@ setInterval(function (e,f,g) {
 
   // draw background forest
   for (i=30;i--;)
-    c.fillStyle = 'hsl(160,40%,'+(10+i)+'%',
+    c.fillStyle = 'hsl(160,60%,'+(10+i)+'%',
     c.fillRect(0,220-i*4,320,4);
 
   // calculate coordinates relative to burn
@@ -138,7 +138,7 @@ setInterval(function (e,f,g) {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = 'hsl(70,40%,'+(50+i)+'%',
+    c.fillStyle = 'hsl(70,60%,'+(50+i)+'%',
     c.fillRect(0,236-i*4,320,4);
 
   // draw entities
