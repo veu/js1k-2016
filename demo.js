@@ -29,7 +29,7 @@ for (x=16;x--;)
       // create grass
       f = Math.random()*7,
       i%2 || entities.push({
-        c: [70,60,-i*2],
+        c: [30,60,-i*2],
         x: X+f*Math.cos(e = Math.random()*7),
         y: -8,
         z: Z+f*Math.sin(e),
