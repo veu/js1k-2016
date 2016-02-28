@@ -18,7 +18,7 @@ for (x=16;x--;)
         });i--;) {
       // create grass
       f = Math.random()*7,
-      i%2 && entities.push({
+      i%2 || entities.push({
         c: [70,60,-i*2],
         x: X+f*Math.cos(e = Math.random()*7),
         y: -8,
@@ -44,7 +44,7 @@ burn = function (e,f,g) {
     e.c = [Math.random()*60,100,10],
     e.s = Math.random()*5+6,
     // create smoke
-    step%16||entities.push({
+    step%16 || entities.push({
       c: [0,0,e.w?(e.w=0,30):-10],
       x: e.x+Math.random()*6,
       y: e.y,
@@ -155,5 +155,5 @@ setInterval(function (e,f,g) {
       )
   });
 
-  step++
+  step--;
 }, step = 33)
