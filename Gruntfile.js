@@ -6,7 +6,6 @@ module.exports = function(grunt) {
       names: [
         'burn',
         'entities',
-        'color',
         'playerX',
         'playerZ',
         'playerA',
@@ -15,9 +14,9 @@ module.exports = function(grunt) {
     },
     regpack: {
       args: {
-        withMath: true,
         crushGainFactor: 1,
-        crushLengthFactor: 0
+        crushLengthFactor: 0,
+        crushTiebreakerFactor : -1
       }
     }
   });

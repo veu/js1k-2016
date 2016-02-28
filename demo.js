@@ -1,5 +1,5 @@
 entities = [
-    playerX = playerZ = playerA = 202
+  playerX = playerZ = playerA = 202
 ];
 
 // add trees
@@ -8,38 +8,48 @@ for (x=16;x--;)
     for (
         // create trunk
         entities.push({
-          c: [i=12,40,-20],
+          c: [i=12,60,-30],
           x: X = x*24+Math.random()*24,
-          y: -2,
+          y: -1,
           z: Z = y*24+Math.random()*24,
           s: 2,
           S: 14,
           h: 1
-        });i--;)
-      // create leaf
+        });i--;
+        // create leaf
+        entities.push({
+          c: [150,60,-i*2],
+          x: X+f*Math.cos(e = Math.random()*7),
+          y: 10-i/2,
+          z: Z+f*Math.sin(e),
+          s: 8,
+          h: 480
+        })
+    )
+      // create fallen fruit
       f = Math.random()*7,
-      entities.push({
-        c: [150,60,-i*2],
+      i%2 || entities.push({
+        c: [30,60,-i*2],
         x: X+f*Math.cos(e = Math.random()*7),
-        y: 10-i/2,
+        y: -8,
         z: Z+f*Math.sin(e),
-        s: 8,
-        h: 480
+        s: 1,
+        h: 1
       });
 
 // burn a leaf (doubles as object for active keys)
 burn = function (e,f,g) {
   e.t = e.p = function (e,f,g) {
     e.h--;
-    e.c = [Math.random()*60,100,10],
+    e.c = [Math.random()*60,100,0],
     e.s = Math.random()*5+6,
     // create smoke
-    step%16||entities.push({
+    step%16 || entities.push({
       c: [0,0,e.w?(e.w=0,30):-10],
       x: e.x+Math.random()*6,
       y: e.y,
       z: e.z,
-      h: 100,
+      h: 90,
       p: function (e,f,g) {
         e.h--;
         e.y+=1/2
@@ -54,41 +64,38 @@ burn = function (e,f,g) {
 },
 
 // start fire
-burn(entities[160]),
+burn(entities[162]),
 
 onkeydown = onkeyup = function (e,f,g) {
   burn[e.keyCode-32] = e.type[5]
 },
 
 setInterval(function (e,f,g) {
-  // move burn
+  // move player
   playerA += (!!burn[7] - !!burn[5])/20,
-  playerX += !!burn[6]*Math.sin(playerA) - !!burn[8]*Math.sin(playerA),
-  playerZ += !!burn[6]*Math.cos(playerA) - !!burn[8]*Math.cos(playerA),
+  playerX += !!burn[6]*Math.sin(playerA),
+  playerZ += !!burn[6]*Math.cos(playerA),
 
   // discharge water
   burn[0] && entities.push({
-    c: [200,40,Math.random()*5],
+    c: [200,60,Math.random()*5],
     x: playerX+12*Math.cos(playerA),
-    y: -8,
     z: playerZ-12*Math.sin(playerA),
     e: 2*Math.sin(playerA-1/2),
     f: 2*Math.cos(playerA-1/2),
     s: 1,
-    Y: 8/3,
     p: function (e,f,g) {
       e.h--;
       e.x+=e.e,
       e.z+=e.f,
-      e.y+=e.Y-=1/4;
+      e.y = 5-(e.h-10)*(e.h-10)/8,
       entities.some(function (f) {
         f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
-          e.h=0,
           f.h-=f.w=9
         )
       });
     },
-    s: 3,
+    s: 2,
     h: 20
   });
 
@@ -103,7 +110,7 @@ setInterval(function (e,f,g) {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = 'hsl(160,40%,'+(50+i)+'%',
+    c.fillStyle = 'hsl(160,60%,'+(50+i)+'%',
     c.fillRect(0,i*4,320,4);
 
   // remove entities no longer needed
@@ -113,10 +120,10 @@ setInterval(function (e,f,g) {
 
   // draw background forest
   for (i=30;i--;)
-    c.fillStyle = 'hsl(160,40%,'+(10+i)+'%',
+    c.fillStyle = 'hsl(160,60%,'+(10+i)+'%',
     c.fillRect(0,220-i*4,320,4);
 
-  // calculate coordinates relative to burn
+  // calculate coordinates relative to player
   entities.some(function (f) {
     f.Z = (f.x - playerX) * Math.sin(playerA) + (f.z - playerZ) * Math.cos(playerA)
   });
@@ -128,7 +135,7 @@ setInterval(function (e,f,g) {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = 'hsl(70,40%,'+(50+i)+'%',
+    c.fillStyle = 'hsl(70,60%,'+(50+i)+'%',
     c.fillRect(0,236-i*4,320,4);
 
   // draw entities
@@ -145,5 +152,5 @@ setInterval(function (e,f,g) {
       )
   });
 
-  step++
+  step--;
 }, step = 33)
