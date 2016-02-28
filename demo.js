@@ -89,7 +89,7 @@ setInterval(function (e,f,g) {
         )
     },
     s: 3,
-    h: 24
+    h: 20
   }),
 
   // prepare canvas
