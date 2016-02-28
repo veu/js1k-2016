@@ -47,9 +47,8 @@ burn = function (e,f,g) {
       s: 4
     });
     // spread fire
-    if (step%160) return;
     entities.some(function (f) {
-      return f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && !burn(f)
+      return step%160 || f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && !burn(f)
     });
   }
 },
@@ -97,15 +96,17 @@ setInterval(function (e,f,g) {
   a.width=500,
   c.translate(90,a.height/2-120|0);
 
+  // update entities
+  entities.some(function (f) {
+    f.p&&f.p(f)
+  });
+
   // draw sky
   for (i=30;i--;)
     c.fillStyle = 'hsl(160,40%,'+(50+i)+'%',
     c.fillRect(0,i*4,320,4);
 
-  // update world
-  entities.some(function (f) {
-    f.p&&f.p(f)
-  });
+  // remove entities no longer needed
   entities = entities.filter(function (e,f,g) {
     return e.h>=0
   });
