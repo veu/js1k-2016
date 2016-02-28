@@ -83,7 +83,6 @@ setInterval(function (e,f,g) {
     z: playerZ-12*Math.sin(playerA),
     e: 2*Math.sin(playerA-1/2),
     f: 2*Math.cos(playerA-1/2),
-    s: 1,
     p: function (e,f,g) {
       e.h--;
       e.x+=e.e,
@@ -110,7 +109,7 @@ setInterval(function (e,f,g) {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = 'hsl(160,60%,'+(50+i)+'%',
+    c.fillStyle = 'hsl('+[160,60+'%',50+i]+'%',
     c.fillRect(0,i*4,320,4);
 
   // remove entities no longer needed
@@ -120,7 +119,7 @@ setInterval(function (e,f,g) {
 
   // draw background forest
   for (i=30;i--;)
-    c.fillStyle = 'hsl(160,60%,'+(10+i)+'%',
+    c.fillStyle = 'hsl('+[160,60+'%',10+i]+'%',
     c.fillRect(0,220-i*4,320,4);
 
   // calculate coordinates relative to player
@@ -135,7 +134,7 @@ setInterval(function (e,f,g) {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = 'hsl(70,60%,'+(50+i)+'%',
+    c.fillStyle = 'hsl('+[70,60+'%',50+i]+'%',
     c.fillRect(0,236-i*4,320,4);
 
   // draw entities
