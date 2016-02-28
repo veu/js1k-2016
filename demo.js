@@ -26,7 +26,7 @@ for (x=16;x--;)
           h: 480
         })
     )
-      // create grass
+      // create fallen fruit
       f = Math.random()*7,
       i%2 || entities.push({
         c: [30,60,-i*2],
@@ -71,7 +71,7 @@ onkeydown = onkeyup = function (e,f,g) {
 },
 
 setInterval(function (e,f,g) {
-  // move burn
+  // move player
   playerA += (!!burn[7] - !!burn[5])/20,
   playerX += !!burn[6]*Math.sin(playerA),
   playerZ += !!burn[6]*Math.cos(playerA),
@@ -123,7 +123,7 @@ setInterval(function (e,f,g) {
     c.fillStyle = 'hsl(160,60%,'+(10+i)+'%',
     c.fillRect(0,220-i*4,320,4);
 
-  // calculate coordinates relative to burn
+  // calculate coordinates relative to player
   entities.some(function (f) {
     f.Z = (f.x - playerX) * Math.sin(playerA) + (f.z - playerZ) * Math.cos(playerA)
   });
