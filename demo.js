@@ -15,7 +15,17 @@ for (x=16;x--;)
           s: 2,
           S: 14,
           h: 1
-        });i--;) {
+        });i--;
+        // create leaf
+        entities.push({
+          c: [150,60,-i*2],
+          x: X+f*Math.cos(e = Math.random()*7),
+          y: 10-i/2,
+          z: Z+f*Math.sin(e),
+          s: 8,
+          h: 480
+        })
+    )
       // create grass
       f = Math.random()*7,
       i%2 || entities.push({
@@ -26,16 +36,6 @@ for (x=16;x--;)
         s: 1,
         h: 1
       });
-      // create leaf
-      entities.push({
-        c: [150,60,-i*2],
-        x: X+f*Math.cos(e = Math.random()*7),
-        y: 10-i/2,
-        z: Z+f*Math.sin(e),
-        s: 8,
-        h: 480
-      });
-    }
 
 // burn a leaf (doubles as object for active keys)
 burn = function (e,f,g) {
