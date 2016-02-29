@@ -1,17 +1,14 @@
-entities = [
-  playerX = playerZ = playerA = 202
-];
+entities = [];
 
 // add trees
-for (x=16;x--;)
-  for (y=16;y--;)
+for (playerA=256;playerA--;)
     for (
         // create trunk
         entities.push({
           c: [i=12,60,-30],
-          x: X = x*24+Math.random()*24,
+          x: X = Math.sqrt(playerA)*13*Math.cos(playerA)+Math.random()*12,
           y: -1,
-          z: Z = y*24+Math.random()*24,
+          z: Z = Math.sqrt(playerA)*13*Math.sin(playerA)+Math.random()*12,
           s: 2,
           S: 14,
           h: 1
@@ -64,7 +61,7 @@ burn = function (e,f,g) {
 },
 
 // start fire
-burn(entities[162]),
+burn(entities[20]),
 
 onkeydown = onkeyup = function (e,f,g) {
   burn[e.keyCode-32] = e.type[5]
@@ -152,4 +149,4 @@ setInterval(function (e,f,g) {
   });
 
   step--;
-}, step = 33)
+}, playerX = playerZ = step = 33)
