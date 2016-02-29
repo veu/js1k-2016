@@ -1,7 +1,5 @@
-entities = [];
-
 // add trees
-for (playerA=256;playerA--;)
+for (entities = [playerA=256];playerA--;)
     for (
         // create trunk
         entities.push({
@@ -61,7 +59,7 @@ burn = function (e,f,g) {
 },
 
 // start fire
-burn(entities[20]),
+burn(entities[30]),
 
 onkeydown = onkeyup = function (e,f,g) {
   burn[e.keyCode-32] = e.type[5]
