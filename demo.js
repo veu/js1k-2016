@@ -33,33 +33,28 @@ for (entities = [playerA=256];playerA--;)
       });
 
 // burn a leaf (doubles as object for active keys)
-burn = function (e,f,g) {
-  e.t = e.p = function (e,f,g) {
-    e.h--;
-    e.c = [Math.random()*60,100,0],
-    e.s = Math.random()*5+6,
-    // create smoke
-    step%16 || entities.push({
-      c: [0,0,e.w?(e.w=0,30):-10],
-      x: e.x+Math.random()*6,
-      y: e.y,
-      z: e.z,
-      h: 90,
-      p: function (e,f,g) {
-        e.h--;
-        e.y+=1/2
-      },
-      s: 4
-    });
-    // spread fire
-    entities.some(function (f) {
-      return step%160 || f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && !burn(f)
-    });
-  }
+entities[30].p = burn = function (e,f,g) {
+  e.h--;
+  e.c = [Math.random()*60,100,0],
+  e.s = Math.random()*5+6,
+  // create smoke
+  step%16 || entities.push({
+    c: [0,0,e.w?(e.w=0,30):-10],
+    x: e.x+Math.random()*6,
+    y: e.y,
+    z: e.z,
+    h: 90,
+    p: function (e,f,g) {
+      e.h--;
+      e.y+=1/2
+    },
+    s: 4
+  });
+  // spread fire
+  entities.some(function (f) {
+    return step%160 || f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && (f.p = burn)
+  });
 },
-
-// start fire
-burn(entities[30]),
 
 onkeydown = onkeyup = function (e,f,g) {
   burn[e.keyCode-32] = e.type[5]
@@ -84,7 +79,7 @@ setInterval(function (e,f,g) {
       e.z+=e.f,
       e.y = 5-(e.h-10)*(e.h-10)/8,
       entities.some(function (f) {
-        f.t && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
+        f.p==burn && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
           f.h-=f.w=9
         )
       });
