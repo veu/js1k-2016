@@ -35,11 +35,11 @@ for (entities = [playerA=256];playerA--;)
 // burn a leaf (doubles as object for active keys)
 entities[30].p = burn = function (e,f,g) {
   e.h--;
-  e.c = [Math.random()*60,100,0],
+  e.c = [Math.random()*60,100,0,1/2],
   e.s = Math.random()*5+6,
   // create smoke
   step%16 || entities.push({
-    c: [0,0,e.w?(e.w=0,30):-10],
+    c: [0,0,e.w?(e.w=0,30):-10,1/2],
     x: e.x+Math.random()*6,
     y: e.y,
     z: e.z,
@@ -99,7 +99,7 @@ setInterval(function (e,f,g) {
 
   // draw sky
   for (i=30;i--;)
-    c.fillStyle = 'hsl('+[160,60+'%',50+i]+'%',
+    c.fillStyle = 'hsla('+[160,60+'%',50+i+'%',1],
     c.fillRect(0,i*4,320,4);
 
   // remove entities no longer needed
@@ -109,7 +109,7 @@ setInterval(function (e,f,g) {
 
   // draw background forest
   for (i=30;i--;)
-    c.fillStyle = 'hsl('+[160,60+'%',10+i]+'%',
+    c.fillStyle = 'hsla('+[160,60+'%',10+i+'%',1],
     c.fillRect(0,220-i*4,320,4);
 
   // calculate coordinates relative to player
@@ -124,7 +124,7 @@ setInterval(function (e,f,g) {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = 'hsl('+[70,60+'%',50+i]+'%',
+    c.fillStyle = 'hsla('+[70,60+'%',50+i+'%',1],
     c.fillRect(0,236-i*4,320,4);
 
   // draw entities
@@ -132,7 +132,7 @@ setInterval(function (e,f,g) {
     f.s-4 && f.Z > 160 || f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
       c.fillRect(
         160 + e - (
-          c.fillStyle = 'hsl('+[f.c[0],f.c[1]+'%',f.c[2]+f.Z/6+46]+'%',
+          c.fillStyle = 'hsla('+[f.c[0],f.c[1]+'%',f.c[2]+f.Z/6+46+'%',f.c[3]||1],
           y = (f.S||f.s)*120/f.Z,
           x = f.s*120/f.Z
         )/2,
