@@ -76,6 +76,8 @@ setInterval(function (e, f, g) {
     x: playerX + 12 * Math.cos(playerA),
     z: playerZ - 12 * Math.sin(playerA),
     e: playerA - .5,
+    s: 2,
+    h: 20,
     p: function (e, f, g) {
       e.h--;
       e.x += 2 * Math.sin(e.e),
@@ -86,9 +88,7 @@ setInterval(function (e, f, g) {
           f.h -= f.w = 9
         )
       });
-    },
-    s: 2,
-    h: 20
+    }
   });
 
   // prepare canvas
