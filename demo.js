@@ -52,7 +52,7 @@ entities[30].p = burn = function (e,f,g) {
   });
   // spread fire
   entities.some(function (f) {
-    return step%160 || f.s==8 && Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && (f.p = burn)
+    return step%160 || f.s-8 || Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && (f.p = burn)
   });
 },
 
@@ -129,14 +129,14 @@ setInterval(function (e,f,g) {
 
   // draw entities
   entities.some(function (f) {
-    f.s-4 && f.Z > 160 || f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*120/f.Z - (f.z - playerZ) * Math.sin(playerA)*120/f.Z) < 160 &&
+    f.s-4 && f.Z > 160 || f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*160/f.Z - (f.z - playerZ) * Math.sin(playerA)*160/f.Z) < 160 &&
       c.fillRect(
         160 + e - (
           c.fillStyle = 'hsla('+[f.c[0],f.c[1]+'%',f.c[2]+f.Z/6+46+'%',f.c[3]||1],
-          y = (f.S||f.s)*120/f.Z,
-          x = f.s*120/f.Z
+          y = (f.S||f.s)*160/f.Z,
+          x = f.s*160/f.Z
         )/2,
-        120 - f.y*120/f.Z-y/2,
+        120 - f.y*160/f.Z-y/2,
         x, y
       )
   });
