@@ -4,9 +4,9 @@ for (entities = [playerA = 256]; playerA--;)
         // create trunk
         entities.push({
           c: [i = 12, 60, -30],
-          x: X = Math.sqrt(playerA) * 13 * Math.cos(playerA) + Math.random() * 12,
+          x: X = Math.sqrt(playerA) * 12 * Math.cos(playerA) + Math.random() * 12,
           y: -1,
-          z: Z = Math.sqrt(playerA) * 13 * Math.sin(playerA) + Math.random() * 12,
+          z: Z = Math.sqrt(playerA) * 12 * Math.sin(playerA) + Math.random() * 12,
           s: 2,
           S: 14,
           h: 1
