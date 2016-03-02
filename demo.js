@@ -56,7 +56,7 @@ entities[30].p = burn = function (e, f, g) {
 
   // spread fire
   entities.some(function (f) {
-    return step % 160 || f.s - 8 || Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn)
+    return(step % 160 || f.s - 8 || Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
   });
 },
 
@@ -107,7 +107,7 @@ setInterval(function (e, f, g) {
 
   // remove entities no longer needed
   entities = entities.filter(function (e, f, g) {
-    return e.h >= 0
+    return(e.h >= 0)
   });
 
   // draw background forest
@@ -122,7 +122,7 @@ setInterval(function (e, f, g) {
 
   // sort entities
   entities.sort(function (e,f,g) {
-    return f.Z - e.Z
+    return(f.Z - e.Z)
   });
 
   // draw ground
