@@ -56,7 +56,7 @@ entities[30].p = burn = function (e, f, g) {
 
   // spread fire
   entities.some(function (f) {
-    return(step % 160 || f.s - 8 || Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
+    return(step % 160 || f.s == 8 && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
   });
 },
 
