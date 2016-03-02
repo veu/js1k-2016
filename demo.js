@@ -1,86 +1,90 @@
 // add trees
-for (entities = [playerA=256];playerA--;)
+for (entities = [playerA = 256]; playerA--;)
     for (
         // create trunk
         entities.push({
-          c: [i=12,60,-30],
-          x: X = Math.sqrt(playerA)*13*Math.cos(playerA)+Math.random()*12,
+          c: [i = 12, 60, -30],
+          x: X = Math.sqrt(playerA) * 13 * Math.cos(playerA) + Math.random() * 12,
           y: -1,
-          z: Z = Math.sqrt(playerA)*13*Math.sin(playerA)+Math.random()*12,
+          z: Z = Math.sqrt(playerA) * 13 * Math.sin(playerA) + Math.random() * 12,
           s: 2,
           S: 14,
           h: 1
-        });i--;
+        });
+        i--;
         // create leaf
         entities.push({
-          c: [150,60,-i*2,.8],
-          x: X+f*Math.cos(e = Math.random()*7),
-          y: 10-i/2,
-          z: Z+f*Math.sin(e),
+          c: [150, 60, -i * 2, .8],
+          x: X + f * Math.cos(e = Math.random() * 7),
+          y: 10 - i / 2,
+          z: Z + f * Math.sin(e),
           s: 8,
           h: 480
         })
     )
       // create fallen fruit
-      f = Math.random()*7,
-      i%2 || entities.push({
-        c: [30,60,-i*2,.8],
-        x: X+f*Math.cos(e = Math.random()*7),
+      f = Math.random() * 7,
+      i % 2 || entities.push({
+        c: [30, 60, -i * 2, .8],
+        x: X + f * Math.cos(e = Math.random() * 7),
         y: -8,
-        z: Z+f*Math.sin(e),
+        z: Z + f * Math.sin(e),
         s: 1,
         h: 1
       });
 
 // burn a leaf (doubles as object for active keys)
-entities[30].p = burn = function (e,f,g) {
+entities[30].p = burn = function (e, f, g) {
+  // update fire
   e.h--;
-  e.c = [Math.random()*60,100,0,.5],
-  e.s = Math.random()*5+6,
+  e.c = [Math.random() * 60, 100, 0, .5],
+  e.s = Math.random() * 5 + 6,
+
   // create smoke
-  step%16 || entities.push({
-    c: [0,0,e.w?(e.w=0,30):-10,.5],
-    x: e.x+Math.random()*6,
+  step % 16 || entities.push({
+    c: [0, 0, e.w ? (e.w = 0, 30) : -10, .5],
+    x: e.x + Math.random() * 6,
     y: e.y,
     z: e.z,
     h: 90,
-    p: function (e,f,g) {
+    p: function (e, f, g) {
       e.h--;
-      e.y+=.5
+      e.y += .5
     },
     s: 4
   });
+
   // spread fire
   entities.some(function (f) {
-    return step%160 || f.s-8 || Math.abs(e.x-f.x)+Math.abs(e.z-f.z) < 40 && Math.random()*50<1 && (f.p = burn)
+    return step % 160 || f.s - 8 || Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn)
   });
 },
 
-onkeydown = onkeyup = function (e,f,g) {
-  burn[e.keyCode-32] = e.type[5]
+onkeydown = onkeyup = function (e, f, g) {
+  burn[e.keyCode - 32] = e.type[5]
 },
 
-setInterval(function (e,f,g) {
+setInterval(function (e, f, g) {
   // move player
-  playerA += (!!burn[7] - !!burn[5])/20,
-  playerX += !!burn[6]*Math.sin(playerA),
-  playerZ += !!burn[6]*Math.cos(playerA),
+  playerA += (!!burn[7] - !!burn[5]) / 20,
+  playerX += !!burn[6] * Math.sin(playerA),
+  playerZ += !!burn[6] * Math.cos(playerA),
 
   // discharge water
   burn[0] && entities.push({
-    c: [200,60,Math.random()*5],
-    x: playerX+12*Math.cos(playerA),
-    z: playerZ-12*Math.sin(playerA),
-    e: 2*Math.sin(playerA-.5),
-    f: 2*Math.cos(playerA-.5),
-    p: function (e,f,g) {
+    c: [200, 60, Math.random()*5],
+    x: playerX + 12 * Math.cos(playerA),
+    z: playerZ - 12 * Math.sin(playerA),
+    e: 2 * Math.sin(playerA - .5),
+    f: 2 * Math.cos(playerA - .5),
+    p: function (e, f, g) {
       e.h--;
-      e.x+=e.e,
-      e.z+=e.f,
-      e.y = 5-(e.h-10)*(e.h-10)/8,
+      e.x += e.e,
+      e.z += e.f,
+      e.y = 5 - (e.h - 10) * (e.h - 10) / 8,
       entities.some(function (f) {
-        f.p==burn && Math.abs(e.x-f.x)+Math.abs(e.z-f.z)<e.s/2+f.s/2 && (
-          f.h-=f.w=9
+        f.p == burn && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < e.s / 2 + f.s / 2 && (
+          f.h -= f.w = 9
         )
       });
     },
@@ -89,28 +93,28 @@ setInterval(function (e,f,g) {
   });
 
   // prepare canvas
-  a.width=500,
-  c.translate(90,a.height/2-120|0);
+  a.width = 500,
+  c.translate(90, a.height / 2 - 120 | 0);
 
   // update entities
   entities.some(function (f) {
-    f.p&&f.p(f)
+    f.p && f.p(f)
   });
 
   // draw sky
-  for (i=30;i--;)
-    c.fillStyle = 'hsla('+[160,60+'%',50+i+'%',1],
-    c.fillRect(0,i*4,320,4);
+  for (i = 30; i--;)
+    c.fillStyle = 'hsla(' + [160, 60 + '%', 50 + i + '%', 1],
+    c.fillRect(0, i * 4, 320, 4);
 
   // remove entities no longer needed
-  entities = entities.filter(function (e,f,g) {
-    return e.h>=0
+  entities = entities.filter(function (e, f, g) {
+    return e.h >= 0
   });
 
   // draw background forest
-  for (i=30;i--;)
-    c.fillStyle = 'hsla('+[160,60+'%',10+i+'%',1],
-    c.fillRect(0,220-i*4,320,4);
+  for (i = 30; i--;)
+    c.fillStyle = 'hsla(' + [160, 60 + '%', 10 + i + '%', 1],
+    c.fillRect(0, 220 - i * 4, 320, 4);
 
   // calculate coordinates relative to player
   entities.some(function (f) {
@@ -124,19 +128,20 @@ setInterval(function (e,f,g) {
 
   // draw ground
   for (i=30;i--;)
-    c.fillStyle = 'hsla('+[70,60+'%',50+i+'%',1],
-    c.fillRect(0,236-i*4,320,4);
+    c.fillStyle = 'hsla(' + [70, 60 + '%', 50 + i + '%', 1],
+    c.fillRect(0, 236 - i * 4, 320, 4);
 
   // draw entities
   entities.some(function (f) {
-    f.s-4 && f.Z > 160 || f.Z > 8 && Math.abs(e = (f.x - playerX) * Math.cos(playerA)*160/f.Z - (f.z - playerZ) * Math.sin(playerA)*160/f.Z) < 160 &&
+    f.s - 4 && f.Z > 160 || f.Z < 8 ||
+    Math.abs(e = (f.x - playerX) * Math.cos(playerA) * 160 / f.Z - (f.z - playerZ) * Math.sin(playerA) * 160 / f.Z) < 160 &&
       c.fillRect(
         160 + e - (
-          c.fillStyle = 'hsla('+[f.c[0],f.c[1]+'%',f.c[2]+f.Z/6+46+'%',f.c[3]||1],
-          y = (f.S||f.s)*160/f.Z,
-          x = f.s*160/f.Z
-        )/2,
-        120 - f.y*160/f.Z-y/2,
+          c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.c[2] + f.Z / 6 + 46 + '%', f.c[3] || 1],
+          y = (f.S || f.s) * 160 / f.Z,
+          x = f.s * 160 / f.Z
+        ) / 2,
+        120 - f.y * 160 / f.Z - y / 2,
         x, y
       )
   });
