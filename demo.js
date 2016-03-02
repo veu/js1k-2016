@@ -35,18 +35,18 @@ for (entities = [playerA=256];playerA--;)
 // burn a leaf (doubles as object for active keys)
 entities[30].p = burn = function (e,f,g) {
   e.h--;
-  e.c = [Math.random()*60,100,0,1/2],
+  e.c = [Math.random()*60,100,0,.5],
   e.s = Math.random()*5+6,
   // create smoke
   step%16 || entities.push({
-    c: [0,0,e.w?(e.w=0,30):-10,1/2],
+    c: [0,0,e.w?(e.w=0,30):-10,.5],
     x: e.x+Math.random()*6,
     y: e.y,
     z: e.z,
     h: 90,
     p: function (e,f,g) {
       e.h--;
-      e.y+=1/2
+      e.y+=.5
     },
     s: 4
   });
@@ -71,8 +71,8 @@ setInterval(function (e,f,g) {
     c: [200,60,Math.random()*5],
     x: playerX+12*Math.cos(playerA),
     z: playerZ-12*Math.sin(playerA),
-    e: 2*Math.sin(playerA-1/2),
-    f: 2*Math.cos(playerA-1/2),
+    e: 2*Math.sin(playerA-.5),
+    f: 2*Math.cos(playerA-.5),
     p: function (e,f,g) {
       e.h--;
       e.x+=e.e,
