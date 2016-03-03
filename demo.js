@@ -92,8 +92,7 @@ setInterval(function (e, f, g) {
   });
 
   // prepare canvas
-  a.width = 500,
-  c.translate(90, a.height / 2 - 120 | 0);
+  c.translate(90, (a.height=a.height) / 2 - 120 | 0);
 
   // update entities
   entities.some(function (f) {
