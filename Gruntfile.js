@@ -9,14 +9,15 @@ module.exports = function(grunt) {
         'playerX',
         'playerZ',
         'playerA',
-        'step'
       ]
     },
     regpack: {
       args: {
         crushGainFactor: 1,
         crushLengthFactor: 0,
-        crushTiebreakerFactor : -1
+        crushTiebreakerFactor: -1,
+        wrapInSetInterval: true,
+        timeVariableName: 's'
       }
     }
   });
@@ -52,6 +53,7 @@ module.exports = function(grunt) {
       if (c in charUsage) charUsage[c]++;
     });
     chars = Object.keys(charUsage);
+    chars = chars.filter(c => charUsage[c] == 0);
     chars.sort(function (a, b) { return charUsage[b] - charUsage[a] });
 
     grunt.log.writeln('Free characters: ' + chars.join(''));

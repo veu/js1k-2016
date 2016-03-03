@@ -1,5 +1,5 @@
 // add trees
-for (entities = [playerA = 256]; playerA--;)
+for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
     for (
         // create trunk
         entities.push({
@@ -41,7 +41,7 @@ entities[30].p = burn = function (e, f, g) {
   e.s = Math.random() * 5 + 6,
 
   // create smoke
-  step % 16 || entities.push({
+  s % 16 || entities.push({
     c: [0, 0, e.w ? (e.w = 0, 30) : -10, .5],
     x: e.x + Math.random() * 6,
     y: e.y,
@@ -56,7 +56,7 @@ entities[30].p = burn = function (e, f, g) {
 
   // spread fire
   entities.some(function (f) {
-    return(step % 160 || f.s == 8 && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
+    return(s % 160 || f.s == 8 && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
   });
 },
 
@@ -126,7 +126,7 @@ setInterval(function (e, f, g) {
   });
 
   // draw ground
-  for (i=30;i--;)
+  for (i = 30; i--;)
     c.fillStyle = 'hsla(' + [70, 60 + '%', 50 + i + '%', 1],
     c.fillRect(0, 236 - i * 4, 320, 4);
 
@@ -145,5 +145,5 @@ setInterval(function (e, f, g) {
       )
   });
 
-  step--;
-}, playerX = playerZ = step = 33)
+  s--;
+}, 33)
