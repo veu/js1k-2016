@@ -3,7 +3,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
     for (
         // create trunk
         entities.push({
-          c: [i = 12, 60, -30, 1],
+          c: [i = 12, 60, 30, 1],
           x: X = Math.sqrt(playerA) * 12 * Math.cos(playerA) + Math.random() * 12,
           y: 0,
           z: Z = Math.sqrt(playerA) * 12 * Math.sin(playerA) + Math.random() * 12,
@@ -14,7 +14,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
         i--;
         // create leaf
         entities.push({
-          c: [150, 60, -i * 2, .8],
+          c: [150, 60, i * 2, .8],
           x: X + f * Math.cos(e = Math.random() * 7),
           y: 10 - i / 2,
           z: Z + f * Math.sin(e),
@@ -25,7 +25,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
       // create fallen fruit
       f = Math.random() * 7,
       i % 2 || entities.push({
-        c: [30, 60, -i * 2, .8],
+        c: [30, 60, i * 2, .8],
         x: X + f * Math.cos(e = Math.random() * 7),
         y: -8,
         z: Z + f * Math.sin(e),
@@ -42,7 +42,7 @@ entities[30].p = burn = function (e, f, g) {
 
   // create smoke
   s % 16 || entities.push({
-    c: [0, 0, e.w ? (e.w = 0, 30) : -10, .5],
+    c: [0, 0, e.w ? (e.w = 0, -30) : 10, .5],
     x: e.x + Math.random() * 6,
     y: e.y,
     z: e.z,
@@ -72,7 +72,7 @@ setInterval(function (e, f, g) {
 
   // discharge water
   burn[0] && entities.push({
-    c: [200, 60, Math.random() * 5, .8],
+    c: [200, 60, Math.random() * -5, .8],
     x: playerX + 12 * Math.cos(playerA),
     z: playerZ - 12 * Math.sin(playerA),
     e: playerA - .5,
@@ -135,7 +135,7 @@ setInterval(function (e, f, g) {
     Math.abs(e = (f.x - playerX) * Math.cos(playerA) * 160 / f.Z - (f.z - playerZ) * Math.sin(playerA) * 160 / f.Z) < 160 &&
       c.fillRect(
         160 + e - (
-          c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.c[2] + f.Z / 6 + 46 + '%', f.c[3]],
+          c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.Z / 6 - f.c[2] + 46 + '%', f.c[3]],
           y = (f.S || f.s) * 160 / f.Z,
           x = f.s * 160 / f.Z
         ) / 2,
