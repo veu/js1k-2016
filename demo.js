@@ -3,12 +3,12 @@ for (entities = [playerA = 256]; playerA--;)
     for (
         // create trunk
         entities.push({
-          c: [i = 12, 60, -30],
+          c: [i = 12, 60, -30, 1],
           x: X = Math.sqrt(playerA) * 12 * Math.cos(playerA) + Math.random() * 12,
-          y: -1,
+          y: 0,
           z: Z = Math.sqrt(playerA) * 12 * Math.sin(playerA) + Math.random() * 12,
           s: 2,
-          S: 14,
+          S: 16,
           h: 1
         });
         i--;
@@ -136,7 +136,7 @@ setInterval(function (e, f, g) {
     Math.abs(e = (f.x - playerX) * Math.cos(playerA) * 160 / f.Z - (f.z - playerZ) * Math.sin(playerA) * 160 / f.Z) < 160 &&
       c.fillRect(
         160 + e - (
-          c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.c[2] + f.Z / 6 + 46 + '%', f.c[3] || 1],
+          c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.c[2] + f.Z / 6 + 46 + '%', f.c[3]],
           y = (f.S || f.s) * 160 / f.Z,
           x = f.s * 160 / f.Z
         ) / 2,
