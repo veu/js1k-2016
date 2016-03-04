@@ -47,16 +47,17 @@ entities[30].p = burn = function (e, f, g) {
     y: e.y,
     z: e.z,
     h: 90,
+    v: 60,
     p:
       s ? function (e, f, g) {
         e.h--;
         e.y += .5
       } : function (e, f, g) {
         e.h--;
+        e.c = [Math.random() * 60, 100, 0],
         e.h < 12 ? e.s += 3 : e.y += 3
       },
-    s: 4,
-    v: 1
+    s: 4
   });
 
   // spread fire
