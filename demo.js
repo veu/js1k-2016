@@ -132,16 +132,16 @@ setInterval(function (e, f, g) {
   // draw entities
   entities.some(function (f) {
     f.s - 4 && f.Z > 160 || f.Z < 8 ||
-    Math.abs(e = (f.x - playerX) * Math.cos(playerA) * 160 / f.Z - (f.z - playerZ) * Math.sin(playerA) * 160 / f.Z) < 160 &&
+    Math.abs(e = (f.x - playerX) * Math.cos(playerA) * 160 / f.Z - (f.z - playerZ) * Math.sin(playerA) * 160 / f.Z) < 160 && (
+      y = (f.S || f.s) * 160 / f.Z,
+      c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.Z / 6 - f.c[2] + 46 + '%', f.c[3]],
       c.fillRect(
-        160 + e - (
-          c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.Z / 6 - f.c[2] + 46 + '%', f.c[3]],
-          y = (f.S || f.s) * 160 / f.Z,
-          x = f.s * 160 / f.Z
-        ) / 2,
+        160 + e - f.s * 160 / f.Z / 2,
         120 - f.y * 160 / f.Z - y / 2,
-        x, y
+        f.s * 160 / f.Z,
+        y
       )
+    )
   });
 
   s--;
