@@ -5,11 +5,11 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
         entities.push({
           c: [i = 12, 60, 30],
           x: X = Math.sqrt(playerA) * 12 * Math.cos(playerA) + Math.random() * 12,
+          h: 480,
           y: 0,
           z: Z = Math.sqrt(playerA) * 12 * Math.sin(playerA) + Math.random() * 12,
           s: 2,
-          S: 16,
-          h: 1
+          S: 16
         });
         i--;
         // create leaf
