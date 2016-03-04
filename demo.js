@@ -17,9 +17,9 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
           c: [150, 60, i * 2],
           x: X + f * Math.cos(e = Math.random() * 7),
           z: Z + f * Math.sin(e),
+          h: 480,
           y: 10 - i / 2,
-          s: 8,
-          h: 480
+          s: 8
         })
     )
       // create fallen fruit
@@ -28,9 +28,9 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
         c: [50, 60, i * 2],
         x: X + f * Math.cos(e = Math.random() * 7),
         z: Z + f * Math.sin(e),
+        h: 480,
         y: -8,
-        s: 1,
-        h: 1
+        s: 1
       });
 
 // burn a leaf (doubles as object for active keys)
