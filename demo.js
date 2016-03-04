@@ -91,7 +91,7 @@ setInterval(function (e, f, g) {
       e.y = 5 - (e.h - 10) * (e.h - 10) / 8,
       entities.some(function (f) {
         f.p == burn && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < e.s / 2 + f.s / 2 && (
-          f.h -= f.w = 9
+          f.h = f.w = 1
         )
       });
     }
