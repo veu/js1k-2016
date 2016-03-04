@@ -16,8 +16,8 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
         entities.push({
           c: [150, 60, i * 2],
           x: X + f * Math.cos(e = Math.random() * 7),
-          y: 10 - i / 2,
           z: Z + f * Math.sin(e),
+          y: 10 - i / 2,
           s: 8,
           h: 480
         })
@@ -27,8 +27,8 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
       i % 2 || entities.push({
         c: [50, 60, i * 2],
         x: X + f * Math.cos(e = Math.random() * 7),
-        y: -8,
         z: Z + f * Math.sin(e),
+        y: -8,
         s: 1,
         h: 1
       });
