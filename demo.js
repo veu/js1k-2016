@@ -25,7 +25,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
       // create fallen fruit
       f = Math.random() * 7,
       i % 2 || entities.push({
-        c: [30, 60, i * 2],
+        c: [50, 60, i * 2],
         x: X + f * Math.cos(e = Math.random() * 7),
         y: -8,
         z: Z + f * Math.sin(e),
