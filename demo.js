@@ -126,7 +126,7 @@ setInterval(function (e, f, g) {
 
   // draw ground
   for (i = 30; i--;)
-    c.fillStyle = 'hsla(' + [70, 60 + '%', 50 + i + '%', 1],
+    c.fillStyle = 'hsla(' + [10 + 60, 60 + '%', 50 + i + '%', 1],
     c.fillRect(0, 236 - i * 4, 320, 4);
 
   // draw entities
