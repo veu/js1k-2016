@@ -42,7 +42,7 @@ entities[30].p = burn = function (e, f, g) {
 
   // create smoke / fireworks
   s % 16 || entities.push({
-    c: [0, 0, e.w ? (e.w = 0, -30) : 10],
+    c: [0, 0, e.h > 1 ? 10 : -30],
     x: e.x + Math.random() * 6,
     y: e.y,
     z: e.z,
@@ -91,7 +91,7 @@ setInterval(function (e, f, g) {
       e.y = 5 - (e.h - 10) * (e.h - 10) / 8,
       entities.some(function (f) {
         f.p == burn && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < e.s / 2 + f.s / 2 && (
-          f.h = f.w = 1
+          f.h = 1
         )
       });
     }
