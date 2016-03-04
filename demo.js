@@ -40,18 +40,23 @@ entities[30].p = burn = function (e, f, g) {
   e.c = [Math.random() * 60, 100, 0],
   e.s = Math.random() * 5 + 6,
 
-  // create smoke
+  // create smoke / fireworks
   s % 16 || entities.push({
     c: [0, 0, e.w ? (e.w = 0, -30) : 10],
     x: e.x + Math.random() * 6,
     y: e.y,
     z: e.z,
     h: 90,
-    p: function (e, f, g) {
-      e.h--;
-      e.y += .5
-    },
-    s: 4
+    p:
+      s ? function (e, f, g) {
+        e.h--;
+        e.y += .5
+      } : function (e, f, g) {
+        e.h--;
+        e.h < 12 ? e.s += 3 : e.y += 3
+      },
+    s: 4,
+    v: 1
   });
 
   // spread fire
@@ -131,10 +136,10 @@ setInterval(function (e, f, g) {
 
   // draw entities
   entities.some(function (f) {
-    f.s - 4 && f.Z > 160 || f.Z < 8 ||
+    !f.v && f.Z > 160 || f.Z < 8 ||
     Math.abs(e = (f.x - playerX) * Math.cos(playerA) * 160 / f.Z - (f.z - playerZ) * Math.sin(playerA) * 160 / f.Z) < 160 && (
       y = (f.S || f.s) * 160 / f.Z,
-      c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.Z / 6 - f.c[2] + 46 + '%', f.S?1:.8],
+      c.fillStyle = 'hsla(' + [f.c[0], f.c[1] + '%', f.Z / 6 - f.c[2] + 46 + '%', f.S ? 1 : .8],
       c.fillRect(
         160 + e - f.s * 160 / f.Z / 2,
         120 - f.y * 160 / f.Z - y / 2,
