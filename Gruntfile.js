@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     mangle: {
-      reserved: 'acefghixyzXZ',
+      reserved: 'acefgisxyzXZ',
       names: [
         'burn',
         'entities',
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
       if (c in charUsage) charUsage[c]++;
     });
     chars = Object.keys(charUsage);
-    chars = chars.filter(c => charUsage[c] == 0);
+    chars = chars.filter(c => charUsage[c] > 0);
     chars.sort(function (a, b) { return charUsage[b] - charUsage[a] });
 
     grunt.log.writeln('Free characters: ' + chars.join(''));
