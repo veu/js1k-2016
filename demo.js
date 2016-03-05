@@ -6,10 +6,10 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
           c: [i = 12, 60, 30],
           x: X = Math.sqrt(playerA) * 12 * Math.cos(playerA) + Math.random() * 12,
           h: 480,
-          y: 0,
+          y: Y = Math.random() * 3 - 1,
           z: Z = Math.sqrt(playerA) * 12 * Math.sin(playerA) + Math.random() * 12,
           s: 2,
-          S: 16
+          S: Y * 2 + 16
         });
         i--;
         // create leaf
@@ -18,7 +18,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
           x: X + f * Math.cos(e = Math.random() * 7),
           z: Z + f * Math.sin(e),
           h: 480,
-          y: 10 - i / 2,
+          y: Y - i / 2 + 10,
           s: 8
         })
     )
