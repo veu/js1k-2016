@@ -90,7 +90,7 @@ setInterval(function (e, f) {
       e.h--;
       e.x += 2 * Math.sin(e.e),
       e.z += 2 * Math.cos(e.e),
-      e.y = 5 - (e.h - 10) * (e.h - 10) / 8,
+      e.y = 5 - (e.h / 2 - 5) * (e.h / 2 - 5) / 2,
       entities.some(function (f) {
         f.p == burn && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < e.s / 2 + f.s / 2 && (
           f.h -= f.w = 9
@@ -122,12 +122,10 @@ setInterval(function (e, f) {
     c.fillStyle = 'hsla(' + [160, 60 + '%', 10 + i + '%', 1],
     c.fillRect(0, 220 - i * 4, 320, 4);
 
-  // calculate coordinates relative to player
+  // sort entities by distance from the screen
   entities.some(function (f) {
     f.Z = (f.x - playerX) * Math.sin(playerA) + (f.z - playerZ) * Math.cos(playerA)
   });
-
-  // sort entities
   entities.sort(function (e, f) {
     return(f.Z - e.Z)
   });
