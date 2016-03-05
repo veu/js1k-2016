@@ -42,7 +42,7 @@ entities[30].p = burn = function (e, f) {
 
   // create smoke / fireworks
   s % 16 || entities.push({
-    c: [0, 0, e.h > 1 ? 10 : -30],
+    c: [0, 0, e.w ? -30 : 10],
     x: e.x + Math.random() * 6,
     y: e.y,
     z: e.z,
@@ -91,7 +91,7 @@ setInterval(function (e, f) {
       e.y = 5 - (e.h - 10) * (e.h - 10) / 8,
       entities.some(function (f) {
         f.p == burn && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < e.s / 2 + f.s / 2 && (
-          f.h = 0
+          f.h -= f.w = 9
         )
       });
     }
@@ -112,7 +112,7 @@ setInterval(function (e, f) {
 
   // remove entities no longer needed
   entities = entities.filter(function (e, f) {
-    return(e.h >= 0)
+    return(e.h > 0)
   });
 
   // draw background forest
