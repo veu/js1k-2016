@@ -64,6 +64,8 @@ entities[30].p = burn = function (e, f) {
   entities.some(function (f) {
     return(s % 300 || f.s == 8 && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
   });
+
+  e.w = 0
 },
 
 onkeydown = onkeyup = function (e, f) {
@@ -78,7 +80,7 @@ setInterval(function (e, f) {
 
   // discharge water
   burn[0] && entities.push({
-    c: [200, 60, Math.random() * -5],
+    c: [200, 60, -5 * Math.sin(s)],
     x: playerX + 12 * Math.cos(playerA),
     z: playerZ - 12 * Math.sin(playerA),
     e: playerA - .5,
