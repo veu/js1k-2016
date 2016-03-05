@@ -34,7 +34,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
       });
 
 // burn a leaf (doubles as object for active keys)
-entities[30].p = burn = function (e, f, g) {
+entities[30].p = burn = function (e, f) {
   // update fire
   e.h--;
   e.c = [Math.random() * 60, 100, 0],
@@ -49,10 +49,10 @@ entities[30].p = burn = function (e, f, g) {
     h: 90,
     v: 60,
     p:
-      s ? function (e, f, g) {
+      s ? function (e, f) {
         e.h--;
         e.y += .5
-      } : function (e, f, g) {
+      } : function (e, f) {
         e.h--;
         e.c = [Math.random() * 60, 100, 0],
         e.h < 12 ? e.s += 3 : e.y += 3
@@ -66,11 +66,11 @@ entities[30].p = burn = function (e, f, g) {
   });
 },
 
-onkeydown = onkeyup = function (e, f, g) {
+onkeydown = onkeyup = function (e, f) {
   burn[e.keyCode - 32] = e.type[5]
 },
 
-setInterval(function (e, f, g) {
+setInterval(function (e, f) {
   // move player
   playerA += (!!burn[7] - !!burn[5]) / 20,
   playerX += (e = !!burn[6] - !!burn[8]) * Math.sin(playerA),
@@ -84,7 +84,7 @@ setInterval(function (e, f, g) {
     e: playerA - .5,
     s: 2,
     h: 20,
-    p: function (e, f, g) {
+    p: function (e, f) {
       e.h--;
       e.x += 2 * Math.sin(e.e),
       e.z += 2 * Math.cos(e.e),
@@ -111,7 +111,7 @@ setInterval(function (e, f, g) {
     c.fillRect(0, i * 4, 320, 4);
 
   // remove entities no longer needed
-  entities = entities.filter(function (e, f, g) {
+  entities = entities.filter(function (e, f) {
     return(e.h >= 0)
   });
 
@@ -126,7 +126,7 @@ setInterval(function (e, f, g) {
   });
 
   // sort entities
-  entities.sort(function (e,f,g) {
+  entities.sort(function (e, f) {
     return(f.Z - e.Z)
   });
 
