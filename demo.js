@@ -100,7 +100,7 @@ setInterval(function (e, f) {
   });
 
   // prepare canvas
-  c.translate(90, (a.height=a.height) / 2 - 120 | 0);
+  c.translate(90, (a.height += 0) / 2 - 120 | 0);
 
   // update entities
   entities.some(function (f) {
