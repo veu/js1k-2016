@@ -5,7 +5,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
         entities.push({
           c: [i = 12, 60, 30],
           x: X = Math.sqrt(playerA) * 12 * Math.cos(playerA) + Math.random() * 12,
-          h: 480,
+          h: 1,
           y: Y = Math.random() * 3 - 1,
           z: Z = Math.sqrt(playerA) * 12 * Math.sin(playerA) + Math.random() * 12,
           s: 2,
@@ -17,7 +17,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
           c: [150, 60, i * 2],
           x: X + f * Math.cos(e = Math.random() * 7),
           z: Z + f * Math.sin(e),
-          h: 480,
+          h: 860,
           y: Y - i / 2 + 10,
           s: 8
         })
@@ -28,7 +28,7 @@ for (entities = [playerA = 256]; s = playerX = playerZ = playerA--;)
         c: [50, 60, i * 2],
         x: X + f * Math.cos(e = Math.random() * 7),
         z: Z + f * Math.sin(e),
-        h: 480,
+        h: 860,
         y: -8,
         s: 1
       });
@@ -62,7 +62,7 @@ entities[30].p = burn = function (e, f) {
 
   // spread fire
   entities.some(function (f) {
-    return(s % 160 || f.s == 8 && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
+    return(s % 300 || f.s == 8 && Math.abs(e.x - f.x) + Math.abs(e.z - f.z) < 40 && Math.random() * 50 < 1 && (f.p = burn))
   });
 },
 
