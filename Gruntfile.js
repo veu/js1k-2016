@@ -2,19 +2,23 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     mangle: {
-      reserved: 'acefghixyz',
+      reserved: 'acefgisxyzXZ',
       names: [
-        'draw',
-        'kindle',
-        'objects',
-        'player',
-        'step'
+        'burn',
+        'entities',
+        'playerX',
+        'playerZ',
+        'playerA',
       ]
     },
-    exec: {
-        regpack: {
-            cmd: 'RegPack/bin/regpack build/demo.mng.js > build/demo.zip.js'
-        }
+    regpack: {
+      args: {
+        crushGainFactor: 1,
+        crushLengthFactor: 0,
+        crushTiebreakerFactor: -1,
+        wrapInSetInterval: true,
+        timeVariableName: 's'
+      }
     }
   });
 
@@ -49,6 +53,7 @@ module.exports = function(grunt) {
       if (c in charUsage) charUsage[c]++;
     });
     chars = Object.keys(charUsage);
+    chars = chars.filter(c => charUsage[c] > 0);
     chars.sort(function (a, b) { return charUsage[b] - charUsage[a] });
 
     grunt.log.writeln('Free characters: ' + chars.join(''));
@@ -76,6 +81,14 @@ module.exports = function(grunt) {
     fs.writeFileSync('build/shim.html', shim);
   });
 
-  grunt.registerTask('default', ['minify', 'mangle', 'exec:regpack', 'compile']);
+  grunt.registerTask('regpack', function() {
+    var fs = require('fs'),
+        cmdRegPack = require('./node_modules/regpack').cmdRegPack,
+        args = grunt.config('regpack.args'),
+    result = cmdRegPack(fs.readFileSync('build/demo.mng.js', 'utf-8'), args);
+    fs.writeFileSync('build/demo.zip.js', result);
+  });
+
+  grunt.registerTask('default', ['minify', 'mangle', 'regpack', 'compile']);
 
 };
